@@ -1,0 +1,2 @@
+Check JSON model : models/parking.js
+Available REST API lists : routes/index.js

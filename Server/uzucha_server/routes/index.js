@@ -2,6 +2,44 @@
 
 module.exports = function(app, Parking, db)
 {
+    app.get('/', function (req, res) {
+        res.send('<html><body><h1>Server is On!</h1></body></html>');
+
+        // DB initialization
+        Parking.find(function(err, parkings) {
+            if (parkings.length != 0) {
+                // ignore if already initialized
+                return;
+            }
+
+            new Parking({
+                google_mark: {
+                    longitude: 37.561059,
+                    latitude: 127.047754
+                },
+                
+                building_name: "김원준의 해피하우스",
+                //building_image_dir: [ {img_dir: String} ], 
+                building_address: "서울시 성동구 사근동 61길, 광덕 빌딩",
+                
+                // park_owner
+                owner_name: "김원준",
+                owner_mail_address: "abc123@naver.com",
+                owner_phone_number: "010-2915-1816",
+                
+                price: "1000원 / 시간",
+                availabe_time: "하루 종일",
+                //is_favorite: { type: Boolean, default: false },
+    
+                detailed_info: "매우 쾌적한 넓은 공간 보유중 ^^ 항시 대기중.. 연락주세요 ^^",
+                owner_comment: "흥정 없습니다.. 쿨거래 원합니다 ^^",
+    
+                //created_at: { type: Date, default: Date.now }
+    
+            }).save();
+        });
+    });
+
     // GET ALL PARKINGS
     app.get('/api/parkings', function(req,res){
         Parking.find(function(err, parkings){
@@ -10,15 +48,17 @@ module.exports = function(app, Parking, db)
         })
     });
 
-    // GET SINGLE PARKINGS
+    // GET SINGLE PARKING
     // GET by ID
-    app.get('/api/parkings/:book_id', function(req, res){
-        Book.findOne({_id: req.params.book_id}, function(err, book){
+    app.get('/api/parkings/:parking_id', function(req, res){
+        Parking.findOne({_id: req.params.parking_id}, function(err, parking){
             if(err) return res.status(500).json({error: err});
-            if(!book) return res.status(404).json({error: 'book not found'});
-            res.json(book);
+            if(!parking) return res.status(404).json({error: 'parking not found'});
+            res.json(parking);
         })
     });
+
+    // ------------------------------------------------------
 
     // GET PARKING BY LOCATION
     app.get('/api/parkings/author/:author', function(req, res){

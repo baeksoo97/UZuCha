@@ -4,6 +4,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ParkingSchema = new Schema({
+    // Google Map
+    google_mark: {
+        longitude: { type: Number, required: true},
+        latitude: { type: Number, required: true},
+        markerName: String
+    },
+
     building_name: { type: String, required: true },
     building_image_dir: [ {img_dir: String} ], 
     building_address: { type: String, required: true },
@@ -15,13 +22,14 @@ var ParkingSchema = new Schema({
     
     price: String,
     availabe_time: String,
-    is_favorite: Boolean,
+    is_favorite: { type: Boolean, default: false },
 
     detailed_info: String,
     owner_comment: String,
 
     created_at: { type: Date, default: Date.now }
 });
+
 module.exports = mongoose.model('parking', ParkingSchema);
 
 /*
