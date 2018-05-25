@@ -11,20 +11,19 @@ var ParkingSchema = new Schema({
         markerName: String
     },
 
-    building_name: { type: String, required: true },
+    building_name: { type: String, required: true},
     building_image_dir: [ {img_dir: String} ], 
-    building_address: { type: String, required: true },
+    building_address: { type: String, required: true},
     
     // park_owner
-    owner_name: String,
+    owner_name: { type: String, required: true},
     owner_mail_address: String,
     owner_phone_number: String,
     
-    price: String,
+    price: { type: String, required: true},
     availabe_time: String,
     is_favorite: { type: Boolean, default: false },
 
-    detailed_info: String,
     owner_comment: String,
 
     created_at: { type: Date, default: Date.now }

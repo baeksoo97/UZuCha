@@ -30,9 +30,33 @@ module.exports = function(app, Parking, db)
                 price: "1000원 / 시간",
                 availabe_time: "하루 종일",
                 //is_favorite: { type: Boolean, default: false },
-    
-                detailed_info: "매우 쾌적한 넓은 공간 보유중 ^^ 항시 대기중.. 연락주세요 ^^",
+
                 owner_comment: "흥정 없습니다.. 쿨거래 원합니다 ^^",
+    
+                //created_at: { type: Date, default: Date.now }
+    
+            }).save();
+
+            new Parking({
+                google_mark: {
+                    longitude: 37.560975,
+                    latitude: 127.045738
+                },
+                
+                building_name: "샘플빌딩",
+                //building_image_dir: [ {img_dir: String} ], 
+                building_address: "서울시 성동구 사근동 58길, 샘플빌딩",
+                
+                // park_owner
+                owner_name: "김부자",
+                owner_mail_address: "abc123@gmail.com",
+                owner_phone_number: "010-1313-2424",
+                
+                price: "한달 정기권 5만원",
+                availabe_time: "저녁에만 가능",
+                //is_favorite: { type: Boolean, default: false },
+
+                owner_comment: "안녕 얘들아 많이 이용해줘",
     
                 //created_at: { type: Date, default: Date.now }
     
@@ -58,26 +82,52 @@ module.exports = function(app, Parking, db)
         })
     });
 
-    // ------------------------------------------------------
+    
 
-    // GET PARKING BY LOCATION
+    // GET PARKINGS SEARCHED BY BY BUILDING NAME
     app.get('/api/parkings/author/:author', function(req, res){
         // 2nd parameter : projection (1: show)
-        Book.find({author: req.params.author}, {_id: 0, title: 1, published_date: 1},  function(err, books){
+        Parking.find({building_name: req.params.building_name}, {_id: 0, owner_name: 1, created_at: 1},  function(err, parkings){
             if(err) return res.status(500).json({error: err});
-            if(books.length === 0) return res.status(404).json({error: 'book not found'});
-            res.json(books);
+            if(parkings.length === 0) return res.status(404).json({error: 'parking not found'});
+            res.json(parkings);
         })
     });
 
-    // CREATE BOOK
+
+    // ------------------------------------------------------
+
+    // CREATE PARKING
+    // USING POST METHOD. UPLOAD WITH JSON
+
     app.post('/api/parkings', function(req, res){
-        //var parking = new Parking();
-        /*
-        book.title = req.body.name;
-        book.author = req.body.author;
-        book.published_date = new Date(req.body.published_date);
-        */
+        
+        var reqBody = req.body;
+
+        var parking = new Parking({
+            google_mark: {
+                longitude: reqBody.longitude,
+                latitude: reqBody.latitude
+            },
+            
+            building_name: reqBody.building_name,
+            //building_image_dir: [ {img_dir: String} ], 
+            building_address: reqBody.building_address,
+            
+            // park_owner
+            owner_name: reqBody.owner_name,
+            owner_mail_address: reqBody.owner_mail_address,
+            owner_phone_number: reqBody.owner_phone_number,
+            
+            price: "1000원 / 시간",
+            availabe_time: "하루 종일",
+            //is_favorite: { type: Boolean, default: false },
+
+            owner_comment: "흥정 없습니다.. 쿨거래 원합니다 ^^",
+
+            //created_at: { type: Date, default: Date.now }
+
+        });
 
         /*
         parking.building_name = req.body.building_name;
@@ -111,7 +161,8 @@ module.exports = function(app, Parking, db)
     });
 
     // UPDATE THE BOOK
-    app.put('/api/parkings/:book_id', function(req, res){
+    // USING PUT METHOD
+    app.put('/api/parkings/:parking_id', function(req, res){
         Book.findById(req.params.book_id, function(err, book){
             if(err) return res.status(500).json({ error: 'database failure' });
             if(!book) return res.status(404).json({ error: 'book not found' });
@@ -141,5 +192,26 @@ module.exports = function(app, Parking, db)
             res.status(204).end();
         })
     });
+
+
+
+    // Use Express midleware to handle 404 and 500 error states.
+    app.use(function(request, response){
+        // Set status 404 if none of above routes processed incoming request. 
+        response.status(404); 
+        // Generate the output.
+        response.send('404 - not found');
+    });
+
+    // 500 error handling. This will be handled in case of any internal issue on the host side.
+    app.use(function(err, request, response){
+        // Set response type to application/json.
+        response.type('application/json');
+        // Set response status to 500 (error code for internal server error).
+        response.status(500);
+        // Generate the output - an Internal server error message. 
+        response.send('500 - internal server error');
+    });
+
 
 }
