@@ -22,7 +22,7 @@ var ParkingSchema = new Schema({
     
     price: { type: String, required: true},
     availabe_time: String,
-    is_favorite: { type: Boolean, default: false },
+    is_favorite: { type: Boolean, default: true },
 
     owner_comment: String,
 

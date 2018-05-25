@@ -64,6 +64,13 @@ module.exports = function(app, Parking, db)
         });
     });
 
+    app.get('/hello', function(req,res){
+        var json_content = {
+            message: "Hello world"
+        };
+        res.json(json_content);
+    });
+
     // GET ALL PARKINGS
     app.get('/api/parkings', function(req,res){
         Parking.find(function(err, parkings){
@@ -95,19 +102,17 @@ module.exports = function(app, Parking, db)
     });
 
 
-    // ------------------------------------------------------
-
     // CREATE PARKING
     // USING POST METHOD. UPLOAD WITH JSON
-
     app.post('/api/parkings', function(req, res){
         
         var reqBody = req.body;
 
+        // get json data from request
         var parking = new Parking({
             google_mark: {
-                longitude: reqBody.longitude,
-                latitude: reqBody.latitude
+                longitude: reqBody.google_mark.longitude,
+                latitude: reqBody.google_mark.latitude
             },
             
             building_name: reqBody.building_name,
@@ -119,48 +124,30 @@ module.exports = function(app, Parking, db)
             owner_mail_address: reqBody.owner_mail_address,
             owner_phone_number: reqBody.owner_phone_number,
             
-            price: "1000원 / 시간",
-            availabe_time: "하루 종일",
+            price: reqBody.price,
+            availabe_time: reqBody.availabe_time,
             //is_favorite: { type: Boolean, default: false },
 
-            owner_comment: "흥정 없습니다.. 쿨거래 원합니다 ^^",
-
+            owner_comment: reqBody.owner_comment,
             //created_at: { type: Date, default: Date.now }
 
         });
 
-        /*
-        parking.building_name = req.body.building_name;
-        parking.building_image_dir = req.body.building_image_dir;
-        parking.building_address = req.body.building_address;
-
-        parking.park_owner.owner_name = req.body.owner_name;
-
-        book.save(function(err) {
-            if (err) {
+        // save data in DB
+        parking.save(function(err, parking) {
+            if(err) {
                 console.error(err);
                 res.json({result : 0});
                 return;
             }
-
-            res.json({result : 1});
-            
-
+            // return ID of element in response
+            res.json({result : 1, id : parking._id});
+            res.status(200).end();
         });
-        */
-       Parking.create(req.body, function(err, post) {
-           if (err) {
-               console.error(err);
-               res.json({result : 0});
-               return;
-           }
-
-           res.json({result : 1});
-
-       });
     });
 
-    // UPDATE THE BOOK
+    /*
+    // UPDATE THE PARKING
     // USING PUT METHOD
     app.put('/api/parkings/:parking_id', function(req, res){
         Book.findById(req.params.book_id, function(err, book){
@@ -178,22 +165,22 @@ module.exports = function(app, Parking, db)
     
         });
     });
+    */
 
-    // DELETE BOOK
-    app.delete('/api/parkings/:book_id', function(req, res){
-        Book.remove({ _id: req.params.book_id }, function(err, output){
+    // ------------------------------------------------------
+
+    // DELETE PARKING
+    app.delete('/api/parkings/:parking_id', function(req, res){
+        Parking.remove({ _id: req.params.parking_id}, function(err, output){
             if(err) return res.status(500).json({ error: "database failure" });
     
             /* ( SINCE DELETE OPERATION IS IDEMPOTENT, NO NEED TO SPECIFY )
             if(!output.result.n) return res.status(404).json({ error: "book not found" });
             res.json({ message: "book deleted" });
             */
-    
             res.status(204).end();
         })
     });
-
-
 
     // Use Express midleware to handle 404 and 500 error states.
     app.use(function(request, response){
