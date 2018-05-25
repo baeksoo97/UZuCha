@@ -1,5 +1,5 @@
 //
-//  LikeTableViewController.swift
+//  FavoriteTableViewController.swift
 //  UZuCha
 //
 //  Created by 수영백 on 2018. 5. 24..
@@ -8,8 +8,30 @@
 
 import UIKit
 
-class LikeTableViewController: UITableViewController {
-
+class FavoriteTableViewController: UITableViewController {
+    let favorParks = parks.filter({$0.is_favorite == true})
+    class FavoriteParkTableViewCell : UITableViewCell{
+        var parkForCell:Park? { didSet{
+            setUpCell()
+            }}
+        
+        @IBOutlet weak var feeView: UITextField!
+        @IBOutlet weak var detailsView: UITextField!
+        @IBOutlet weak var commentView: UITextField!
+        @IBOutlet weak var parkImageView: UIImageView!
+        
+        func setUpCell() {
+            guard let park = parkForCell else {
+                return
+            }
+            feeView.text = park.fee
+            detailsView.text = ""
+            //park.details.available_time + " | " + park.details.capacity + " |" + park.details.floor
+            commentView.text = park.owner_comment
+            parkImageView.image = UIImage(named:park.building.image)
+        }
+    }
+    // init(_ building:Building,_ owner : Owner,_ address:Address,_ fee:String,_ is_favorite:Bool,_  details:Details,_ owner_comment:String,_ register_date: String){
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,18 +56,34 @@ class LikeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        print("ddd")
+        return favorParks.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteParkCell", for: indexPath) as! FavoriteParkTableViewCell
 
-        // Configure the cell...
-
+        let favoritePark = favorParks[indexPath.row]
+        
+        var detailsString = ""
+        detailsString += "\(favoritePark.details.capacity)" + "대 | "
+        if(favoritePark.details.floor < 0){
+            detailsString += "지하" + "\(-favoritePark.details.floor)" + "층 | "
+        }
+        else{
+            detailsString += "\(favoritePark.details.floor)" + "층 "
+        }
+        detailsString += favoritePark.details.available_time
+   
+        cell.feeView?.text = favoritePark.fee
+        cell.detailsView?.text = detailsString
+        cell.commentView?.text = favoritePark.owner_comment
+        cell.parkImageView?.image = UIImage(named: favoritePark.building.image)
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -91,5 +129,29 @@ class LikeTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+   
+//    class FavoriteParkTableViewCell:UITableViewCell{
+//
+//        var parkForCell:Park? { didSet{
+//            setUpCell()
+//        }}
+//
+//        @IBOutlet weak var feeView: UITextField!
+//        @IBOutlet weak var detailsView: UITextField!
+//        @IBOutlet weak var commentView: UITextField!
+//        @IBOutlet weak var parkImageView: UIImageView!
+//
+//        func setUpCell() {
+//            guard let park = parkForCell else {
+//                return
+//            }
+//            feeView.text = park.fee
+//            detailsView.text = ""
+//            //park.details.available_time + " | " + park.details.capacity + " |" + park.details.floor
+//            commentView.text = park.owner_comment
+//            parkImageView.image = UIImage(named:park.building.image)
+//        }
+//    }
 
+    
 }
