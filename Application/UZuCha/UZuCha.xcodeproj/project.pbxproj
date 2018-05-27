@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		485DA20720B6AF3F00346C76 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485DA20620B6AF3F00346C76 /* FavoriteTableViewController.swift */; };
 		485DA20920B6B04700346C76 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485DA20820B6B04700346C76 /* Data.swift */; };
+		906FD5F120BAEF4800E583C2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FD5F020BAEF4800E583C2 /* MapViewController.swift */; };
 		C5F0053A20A432FE00DE7B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F0053920A432FE00DE7B8D /* AppDelegate.swift */; };
 		C5F0053F20A432FE00DE7B8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5F0053D20A432FE00DE7B8D /* Main.storyboard */; };
 		C5F0054120A432FF00DE7B8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5F0054020A432FF00DE7B8D /* Assets.xcassets */; };
 		C5F0054420A432FF00DE7B8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5F0054220A432FF00DE7B8D /* LaunchScreen.storyboard */; };
 		C5F0054F20A432FF00DE7B8D /* UZuChaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F0054E20A432FF00DE7B8D /* UZuChaTests.swift */; };
 		C5F0055A20A432FF00DE7B8D /* UZuChaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F0055920A432FF00DE7B8D /* UZuChaUITests.swift */; };
+		CED7113B2C410C721A8F8FE2 /* libPods-UZuCha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 038647CA18877F400D7660BE /* libPods-UZuCha.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		038647CA18877F400D7660BE /* libPods-UZuCha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UZuCha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FFAC13581E3EBA1236CC685 /* Pods-UZuCha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UZuCha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UZuCha/Pods-UZuCha.debug.xcconfig"; sourceTree = "<group>"; };
 		485DA20620B6AF3F00346C76 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		485DA20820B6B04700346C76 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		906FD5F020BAEF4800E583C2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C5F0053620A432FE00DE7B8D /* UZuCha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UZuCha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F0053920A432FE00DE7B8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5F0053E20A432FE00DE7B8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 		C5F0055520A432FF00DE7B8D /* UZuChaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UZuChaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F0055920A432FF00DE7B8D /* UZuChaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UZuChaUITests.swift; sourceTree = "<group>"; };
 		C5F0055B20A432FF00DE7B8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F78A3F503F337EB636267DAB /* Pods-UZuCha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UZuCha.release.xcconfig"; path = "Pods/Target Support Files/Pods-UZuCha/Pods-UZuCha.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED7113B2C410C721A8F8FE2 /* libPods-UZuCha.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28FF976163AC5698E1246786 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0FFAC13581E3EBA1236CC685 /* Pods-UZuCha.debug.xcconfig */,
+				F78A3F503F337EB636267DAB /* Pods-UZuCha.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C5F0052D20A432FE00DE7B8D = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +99,8 @@
 				C5F0054D20A432FF00DE7B8D /* UZuChaTests */,
 				C5F0055820A432FF00DE7B8D /* UZuChaUITests */,
 				C5F0053720A432FE00DE7B8D /* Products */,
+				28FF976163AC5698E1246786 /* Pods */,
+				D273CCBFB4773B60B7B62DB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +124,7 @@
 				C5F0054020A432FF00DE7B8D /* Assets.xcassets */,
 				C5F0054220A432FF00DE7B8D /* LaunchScreen.storyboard */,
 				C5F0054520A432FF00DE7B8D /* Info.plist */,
+				906FD5F020BAEF4800E583C2 /* MapViewController.swift */,
 			);
 			path = UZuCha;
 			sourceTree = "<group>";
@@ -128,6 +147,14 @@
 			path = UZuChaUITests;
 			sourceTree = "<group>";
 		};
+		D273CCBFB4773B60B7B62DB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				038647CA18877F400D7660BE /* libPods-UZuCha.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +162,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C5F0055E20A432FF00DE7B8D /* Build configuration list for PBXNativeTarget "UZuCha" */;
 			buildPhases = (
+				1EB25F60956931A414F2FF6A /* [CP] Check Pods Manifest.lock */,
 				C5F0053220A432FE00DE7B8D /* Sources */,
 				C5F0053320A432FE00DE7B8D /* Frameworks */,
 				C5F0053420A432FE00DE7B8D /* Resources */,
+				357764F00F2B199185C60700 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,6 +283,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1EB25F60956931A414F2FF6A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UZuCha-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		357764F00F2B199185C60700 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-UZuCha/Pods-UZuCha-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UZuCha/Pods-UZuCha-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C5F0053220A432FE00DE7B8D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -262,6 +332,7 @@
 				C5F0053A20A432FE00DE7B8D /* AppDelegate.swift in Sources */,
 				485DA20720B6AF3F00346C76 /* FavoriteTableViewController.swift in Sources */,
 				485DA20920B6B04700346C76 /* Data.swift in Sources */,
+				906FD5F120BAEF4800E583C2 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +503,7 @@
 		};
 		C5F0055F20A432FF00DE7B8D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FFAC13581E3EBA1236CC685 /* Pods-UZuCha.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -449,6 +521,7 @@
 		};
 		C5F0056020A432FF00DE7B8D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F78A3F503F337EB636267DAB /* Pods-UZuCha.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -56,7 +56,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qPL-f6-dOW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="513" y="-980"/>
+            <point key="canvasLocation" x="630" y="-980"/>
         </scene>
         <!--홈-->
         <scene sceneID="ne3-VM-wro">
@@ -135,7 +135,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXr-pu-frh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="512.79999999999995" y="375.56221889055473"/>
+            <point key="canvasLocation" x="658" y="491"/>
         </scene>
         <!--관심목록-->
         <scene sceneID="XwA-VF-r8O">
@@ -152,7 +152,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2C-ue-dEC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-207" y="376"/>
+            <point key="canvasLocation" x="-207" y="491"/>
         </scene>
         <!--지도-->
         <scene sceneID="poe-la-E0h">
@@ -164,28 +164,46 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="dff-2s-E5k" kind="relationship" relationship="rootViewController" id="hrN-U4-SPt"/>
+                        <segue destination="dff-2s-E5k" kind="relationship" relationship="rootViewController" id="YWX-1E-qGt"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bF4-W3-EsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-207" y="-294"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="j0D-yT-dw0">
             <objects>
-                <viewController id="dff-2s-E5k" sceneMemberID="viewController">
+                <viewController id="dff-2s-E5k" customClass="MapViewController" customModule="UZuCha" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vaL-Q2-Ls3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eR-h9-dLd" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8eR-h9-dLd" firstAttribute="leading" secondItem="Jig-Vz-emU" secondAttribute="leading" id="9C3-M9-oIE"/>
+                            <constraint firstItem="8eR-h9-dLd" firstAttribute="top" secondItem="Jig-Vz-emU" secondAttribute="top" id="FQq-JE-wPm"/>
+                            <constraint firstItem="Jig-Vz-emU" firstAttribute="bottom" secondItem="8eR-h9-dLd" secondAttribute="bottom" id="jhH-fE-kQ9"/>
+                            <constraint firstItem="Jig-Vz-emU" firstAttribute="trailing" secondItem="8eR-h9-dLd" secondAttribute="trailing" id="oA8-Dl-2fI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Jig-Vz-emU"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Leh-Uu-Ib2"/>
+                    <navigationItem key="navigationItem" id="Leh-Uu-Ib2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="BaD-3i-Ja0">
+                            <connections>
+                                <action selector="searchButton:" destination="dff-2s-E5k" id="aVv-Ek-Qin"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="na3-06-tQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="513" y="-295"/>
+            <point key="canvasLocation" x="630" y="-296"/>
         </scene>
     </scenes>
     <resources>
