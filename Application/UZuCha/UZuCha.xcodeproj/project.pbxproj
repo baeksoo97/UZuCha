@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		483BC12320BB09780035AA77 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483BC12220BB09780035AA77 /* DetailViewController.swift */; };
 		485DA20720B6AF3F00346C76 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485DA20620B6AF3F00346C76 /* FavoriteTableViewController.swift */; };
 		485DA20920B6B04700346C76 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485DA20820B6B04700346C76 /* Data.swift */; };
 		C5F0053A20A432FE00DE7B8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F0053920A432FE00DE7B8D /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		483BC12220BB09780035AA77 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		485DA20620B6AF3F00346C76 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		485DA20820B6B04700346C76 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C5F0053620A432FE00DE7B8D /* UZuCha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UZuCha.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 		C5F0053820A432FE00DE7B8D /* UZuCha */ = {
 			isa = PBXGroup;
 			children = (
+				483BC12220BB09780035AA77 /* DetailViewController.swift */,
 				C5F0053920A432FE00DE7B8D /* AppDelegate.swift */,
 				C5F0053D20A432FE00DE7B8D /* Main.storyboard */,
 				485DA20620B6AF3F00346C76 /* FavoriteTableViewController.swift */,
@@ -262,6 +265,7 @@
 				C5F0053A20A432FE00DE7B8D /* AppDelegate.swift in Sources */,
 				485DA20720B6AF3F00346C76 /* FavoriteTableViewController.swift in Sources */,
 				485DA20920B6B04700346C76 /* Data.swift in Sources */,
+				483BC12320BB09780035AA77 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

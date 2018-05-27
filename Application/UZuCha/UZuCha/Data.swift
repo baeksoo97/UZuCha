@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //var ParkingSchema = new Schema({
 //    // Google Map
@@ -124,3 +125,4 @@ func createPark() ->[Park]{
     return [park1, park2, park3]
 }
 var parks: [Park] = createPark() //global
+
