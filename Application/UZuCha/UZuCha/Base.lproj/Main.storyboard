@@ -200,6 +200,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="8eR-h9-dLd" id="4Zs-rN-V00"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="na3-06-tQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
