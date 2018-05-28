@@ -14,7 +14,7 @@
 		C528D25920B7F68600C70316 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C528D25720B7F68600C70316 /* LaunchScreen.storyboard */; };
 		C528D26420B7F68600C70316 /* HelloWorldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528D26320B7F68600C70316 /* HelloWorldTests.swift */; };
 		C528D26F20B7F68600C70316 /* HelloWorldUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528D26E20B7F68600C70316 /* HelloWorldUITests.swift */; };
-		C553D05820BC24DC00EBB677 /* weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C553D05720BC24DC00EBB677 /* weather.swift */; };
+		C553D05820BC24DC00EBB677 /* JSONParking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C553D05720BC24DC00EBB677 /* JSONParking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,7 @@
 		C528D26A20B7F68600C70316 /* HelloWorldUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloWorldUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C528D26E20B7F68600C70316 /* HelloWorldUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloWorldUITests.swift; sourceTree = "<group>"; };
 		C528D27020B7F68600C70316 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C553D05720BC24DC00EBB677 /* weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weather.swift; sourceTree = "<group>"; };
+		C553D05720BC24DC00EBB677 /* JSONParking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				C528D24E20B7F68500C70316 /* AppDelegate.swift */,
-				C553D05720BC24DC00EBB677 /* weather.swift */,
+				C553D05720BC24DC00EBB677 /* JSONParking.swift */,
 				C528D25020B7F68500C70316 /* ViewController.swift */,
 				C528D25220B7F68500C70316 /* Main.storyboard */,
 				C528D25520B7F68600C70316 /* Assets.xcassets */,
@@ -261,7 +261,7 @@
 			files = (
 				C528D25120B7F68500C70316 /* ViewController.swift in Sources */,
 				C528D24F20B7F68500C70316 /* AppDelegate.swift in Sources */,
-				C553D05820BC24DC00EBB677 /* weather.swift in Sources */,
+				C553D05820BC24DC00EBB677 /* JSONParking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
