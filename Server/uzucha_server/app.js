@@ -6,6 +6,15 @@ var app         = express();
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
 var path        = require('path');
+var fs          = require('fs');
+var request     = require('request');
+var progress    = require('progress-stream');
+var url         = require('url');
+var serializer  = require('express-serializer');
+var ip          = require('ip');
+
+
+var multer      = require('multer');
 
 // 변수
 var mongoURL = 'mongodb://localhost:27017/UzuChaDB'
@@ -38,4 +47,5 @@ var router = require('./routes')(app, Parking, db);
 // [RUN SERVER]
 var server = app.listen(port, function(){
  console.log("Express server has started on port " + port)
+ console.log(ip.address())
 });

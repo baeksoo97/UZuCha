@@ -32,6 +32,7 @@ struct JSONParking {
  
     // set as AWS server
     static let basePath = "http://52.78.114.28:8091/"
+    //static let basePath = "http://127.0.0.1:8091/"
 
     // call in main function
     // get all the lists of parkings in JSON Array form
@@ -56,22 +57,6 @@ struct JSONParking {
             if let data = data {
                 
                 do {
-                    /*
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String:Any]] {
-                        
-                        for eachJSON in json {
-
-                            let myStruct = try JSONDecoder().decode(Swifter.self, from: eachJSON)
-                            /*
-                            if let parking = try? JSONParking(json: eachJSON) {
-                                parkingArray.append(parking)
-                            }
-                            */
-                            
-                        }
-                    }
-                    */
-                    
                     parkingArray = try JSONDecoder().decode([JSON_Parking_type].self, from: data)
                     
                 } catch {
@@ -105,42 +90,62 @@ struct JSONParking {
             
             if let data = data {
                 
-                
-                
                 do {
-                    /*
-                     if let json = try JSONsSerialization.jsonObject(with: data, options: []) as? [[String:Any]] {
-                     
-                     for eachJSON in json {
-                     
-                     let myStruct = try JSONDecoder().decode(Swifter.self, from: eachJSON)
-                     /*
-                     if let parking = try? JSONParking(json: eachJSON) {
-                     parkingArray.append(parking)
-                     }
-                     */
-                     
-                     }
-                     }
-                     */
                     
                     parking = try JSONDecoder().decode(JSON_Parking_type.self, from: data)
                     completion(parking)
                     
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+        task.resume()
+    }
+    
+    static func getImagesByID (id: String, completion: @escaping ([String]) -> ()) {
+        
+        let apiURL = "api/parkings/"
+        let inputUrl = basePath + apiURL + id
+        
+        guard let url = URL(string: inputUrl) else {
+            print("ERROR: CANNOT CREATE URL")
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
+            
+            let input_image_string:[String]
+            var result_image_string:[String] = []
+            var parking:JSON_Parking_type
+            
+            if let data = data {
+                
+                do {
+                    
+                    parking = try JSONDecoder().decode(JSON_Parking_type.self, from: data)
+                    input_image_string = parking.building_image_dir
+                    
+                    for image_path in input_image_string {
+                        result_image_string.append(basePath + image_path)
+                    }
+                    
+                    completion(result_image_string)
                     
                 } catch {
                     print(error.localizedDescription)
                 }
                 
                 
-                
-                
             }
-            
         }
         
         task.resume()
     }
+ 
  
 }
 

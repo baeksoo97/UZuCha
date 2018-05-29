@@ -19,7 +19,7 @@ module.exports = function(app, Parking, db)
                 },
                 
                 building_name: "김원준의 해피하우스",
-                //building_image_dir: [ {img_dir: String} ], 
+                building_image_dir: ["images/1_1.jpg", "images/1_2.jpg", "images/1_3.jpg"], 
                 building_address: "서울시 성동구 사근동 61길, 광덕 빌딩",
                 
                 // park_owner
@@ -29,11 +29,8 @@ module.exports = function(app, Parking, db)
                 
                 price: "1000원 / 시간",
                 availabe_time: "하루 종일",
-                //is_favorite: { type: Boolean, default: false },
 
                 owner_comment: "흥정 없습니다.. 쿨거래 원합니다 ^^",
-    
-                //created_at: { type: Date, default: Date.now }
     
             }).save();
 
@@ -44,7 +41,7 @@ module.exports = function(app, Parking, db)
                 },
                 
                 building_name: "샘플빌딩",
-                //building_image_dir: [ {img_dir: String} ], 
+                building_image_dir: ["images/2_1.jpg", "images/2_2.jpg", "images/2_3.jpg"],
                 building_address: "서울시 성동구 사근동 58길, 샘플빌딩",
                 
                 // park_owner
@@ -54,11 +51,8 @@ module.exports = function(app, Parking, db)
                 
                 price: "한달 정기권 5만원",
                 availabe_time: "저녁에만 가능",
-                //is_favorite: { type: Boolean, default: false },
 
                 owner_comment: "안녕 얘들아 많이 이용해줘",
-    
-                //created_at: { type: Date, default: Date.now }
     
             }).save();
         });
@@ -71,6 +65,8 @@ module.exports = function(app, Parking, db)
         res.json(json_content);
     });
 
+
+
     // GET ALL PARKINGS
     app.get('/api/parkings', function(req,res){
         Parking.find(function(err, parkings){
@@ -82,24 +78,30 @@ module.exports = function(app, Parking, db)
     // GET SINGLE PARKING
     // GET by ID
     app.get('/api/parkings/:parking_id', function(req, res){
+
         Parking.findOne({_id: req.params.parking_id}, function(err, parking){
+            if(err) return res.status(500).json({error: err});
+            if(!parking) return res.status(404).json({error: 'parking not found'});
+            res.json(parking);
+        })
+
+
+    });
+
+    
+
+    // GET PARKING IMAGE DIRECTORIES IN ONE PARKING
+    // GET by ID
+    app.get('/api/parkings/images/:parking_id', function(req, res){
+        // 2nd parameter : projection (1: show)
+        Parking.findOne({_id: req.params.parking_id}, {building_image_dir: 1},  function(err, parking){
             if(err) return res.status(500).json({error: err});
             if(!parking) return res.status(404).json({error: 'parking not found'});
             res.json(parking);
         })
     });
 
-    
 
-    // GET PARKINGS SEARCHED BY BY BUILDING NAME
-    app.get('/api/parkings/author/:author', function(req, res){
-        // 2nd parameter : projection (1: show)
-        Parking.find({building_name: req.params.building_name}, {_id: 0, owner_name: 1, created_at: 1},  function(err, parkings){
-            if(err) return res.status(500).json({error: err});
-            if(parkings.length === 0) return res.status(404).json({error: 'parking not found'});
-            res.json(parkings);
-        })
-    });
 
 
     // CREATE PARKING
