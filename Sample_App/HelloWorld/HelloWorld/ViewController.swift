@@ -12,23 +12,24 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        JSONParking.getParkingsJSON(commands: "api/parkings") { (results:[JSONParking]) in
+        // 사용 예시
+        //
+        // 1. 저장되어있는 모든 DB 순회하면서 모든 데이터 불러오기
+        JSONParking.getAllParkingsJSON(commands: "api/parkings") { (results:[JSON_Parking_type]) in
+            // results: JSON 타입의 배열
             for result in results {
-                print("\(result)\n\n")
+                
+                // 전체 JSON 데이터
+                print("\(result)\n")
+                
+                // JSON 부분 데이터 활용할 때
+                print("\(result.building_address)")
+                print("\(result.google_mark.latitude)")
+                print("\n")
             }
         }
- 
-        /*
-        Weather.forecast(withLocation: "37.8267,-122.4333") { (results:[Weather]) in
-            for result in results {
-                print("\(result)\n\n")
-            }
- 
-            
-        }
-    */
+        
         
     }
 
