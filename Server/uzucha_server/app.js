@@ -5,6 +5,7 @@ var express     = require('express');
 var app         = express();
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
+var path        = require('path');
 
 // 변수
 var mongoURL = 'mongodb://localhost:27017/UzuChaDB'
@@ -19,7 +20,7 @@ db.once('open', function() {
     // CONNEC TED TO MONGODB SERVER
     console.log("Connected to mongod server");
 });
-mongoose.connect(mongoURL);
+var mongooConnection = mongoose.connect(mongoURL);
 
 // DEFINE MODEL
 var Parking = require('./models/parking')
@@ -27,6 +28,9 @@ var Parking = require('./models/parking')
 // [CONFIGURE APP TO USE bodyParser]
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// [CONFIGURE TO USE GAIN ACCESS TO STATICS] 
+app.use(express.static(path.join(__dirname, 'public')));
 
 // [CONFIGURE ROUTER]
 var router = require('./routes')(app, Parking, db);
