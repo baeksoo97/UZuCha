@@ -12,7 +12,7 @@ var ParkingSchema = new Schema({
     },
 
     building_name: { type: String, required: true},
-    building_image_dir: [ {img_dir: String} ], 
+    building_image_dir: [ {type: String} ], 
     building_address: { type: String, required: true},
     
     // park_owner
@@ -22,7 +22,7 @@ var ParkingSchema = new Schema({
     
     price: { type: String, required: true},
     availabe_time: String,
-    is_favorite: { type: Boolean, default: true },
+    is_favorite: { type: Boolean, default: false},
 
     owner_comment: String,
 
