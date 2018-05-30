@@ -84,10 +84,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteParkCell" rowHeight="114" id="rey-sh-qTe" customClass="FavoriteParkTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteParkCell" rowHeight="114" id="rey-sh-qTe" customClass="FavoriteParkTableViewCell" customModule="UZuCha" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="114"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rey-sh-qTe" id="hKQ-U3-7eT">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rey-sh-qTe" id="hKQ-U3-7eT">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="113.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -95,34 +95,35 @@
                                             <rect key="frame" x="259" y="16" width="100" height="80"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="favorite_text_details" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="4대 | 1층 | 9:00AM~10:00AM " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aAX-zr-UZ2">
-                                            <rect key="frame" x="16" y="40" width="239" height="30"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="/소 5000/중 5000/대 2000/" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyF-ic-anR">
+                                            <rect key="frame" x="15" y="16" width="239" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="favorite_text_comment" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="왕십리역 약 3분 기둥 없음 주차하기 편함 " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dzj-os-jPv">
-                                            <rect key="frame" x="16" y="63" width="239" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="favorite_text_fee" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="/소 5000/중 5000/대 2000/" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G3w-68-ShE">
-                                            <rect key="frame" x="16" y="11" width="239" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4대 | 1층 | 9:00AM~10:00AM " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9O-NK-k4h">
+                                            <rect key="frame" x="16" y="45" width="239" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="왕십리역 약 3분 기둥 없음 주차하기 편함 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsM-2J-N1c">
+                                            <rect key="frame" x="16" y="74" width="239" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="commentView" destination="dzj-os-jPv" id="MKr-0K-qrp"/>
-                                    <outlet property="detailsView" destination="aAX-zr-UZ2" id="B6F-FG-pRQ"/>
-                                    <outlet property="feeView" destination="G3w-68-ShE" id="FSO-NU-2mV"/>
+                                    <outlet property="commentView" destination="bsM-2J-N1c" id="wX9-5b-zKe"/>
+                                    <outlet property="detailsView" destination="N9O-NK-k4h" id="E6p-DT-X2t"/>
+                                    <outlet property="feeView" destination="fyF-ic-anR" id="p9G-3J-E2A"/>
                                     <outlet property="parkImageView" destination="UTS-qq-Lc4" id="d6s-5O-mpf"/>
+                                    <segue destination="Zn5-fU-z3b" kind="show" identifier="DetailParkSegue" id="bBp-Yg-FCO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -205,8 +206,95 @@
             </objects>
             <point key="canvasLocation" x="630" y="-296"/>
         </scene>
+        <!--주차장-->
+        <scene sceneID="zeg-rE-892">
+            <objects>
+                <viewController title="주차장" wantsFullScreenLayout="YES" id="Zn5-fU-z3b" customClass="DetailViewController" customModule="UZuCha" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JBO-Ek-cjL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5E3-Yh-WDp">
+                                <rect key="frame" x="0.0" y="64" width="375" height="197"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4대" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBV-NP-Y4Q">
+                                <rect key="frame" x="59" y="400" width="51" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="왕십리역 약 3분 기둥 없음 주차하기 편함 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ll-LA-b3e">
+                                <rect key="frame" x="68" y="317" width="239" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="/소 5000/중 5000/대 2000/" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFX-1U-vDw">
+                                <rect key="frame" x="5" y="286" width="364" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="details_available_time" translatesAutoresizingMaskIntoConstraints="NO" id="wCg-Qr-Q9G">
+                                <rect key="frame" x="274" y="360" width="33" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="details_capacity" translatesAutoresizingMaskIntoConstraints="NO" id="PSK-rE-Nyf">
+                                <rect key="frame" x="68" y="360" width="33" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="details_floor" translatesAutoresizingMaskIntoConstraints="NO" id="Qkl-1B-03y">
+                                <rect key="frame" x="171" y="360" width="33" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9:00AM~10:00AM " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uf-NH-xCA">
+                                <rect key="frame" x="223" y="400" width="135" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1층 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITK-LB-8s6">
+                                <rect key="frame" x="152" y="400" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Tx-dC-hRf">
+                                <rect key="frame" x="55" y="517" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="callingButton:" destination="Zn5-fU-z3b" eventType="touchUpInside" id="24w-9d-Hvd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Jvg-sm-ebb"/>
+                    </view>
+                    <connections>
+                        <outlet property="commentView" destination="4Ll-LA-b3e" id="66f-HY-69i"/>
+                        <outlet property="detailsAvailableTimeView" destination="9uf-NH-xCA" id="Qdj-rE-uv6"/>
+                        <outlet property="detailsCapacityView" destination="GBV-NP-Y4Q" id="ZlW-ye-7C7"/>
+                        <outlet property="detailsFloorView" destination="ITK-LB-8s6" id="kEp-fx-f1U"/>
+                        <outlet property="feeView" destination="IFX-1U-vDw" id="G9g-9F-aZF"/>
+                        <outlet property="parkImageView" destination="5E3-Yh-WDp" id="owX-1Z-Slj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bUL-z3-0fC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1294" y="376"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="details_available_time" width="33" height="32"/>
+        <image name="details_capacity" width="33" height="32"/>
+        <image name="details_floor" width="33" height="32"/>
         <image name="icon_home" width="29" height="29"/>
         <image name="icon_like" width="29" height="30"/>
         <image name="icon_map" width="30" height="30"/>
