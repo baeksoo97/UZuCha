@@ -5,6 +5,16 @@ var express     = require('express');
 var app         = express();
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
+var path        = require('path');
+var fs          = require('fs');
+var request     = require('request');
+var progress    = require('progress-stream');
+var url         = require('url');
+var serializer  = require('express-serializer');
+var ip          = require('ip');
+
+
+var multer      = require('multer');
 
 // 변수
 var mongoURL = 'mongodb://localhost:27017/UzuChaDB'
@@ -19,7 +29,7 @@ db.once('open', function() {
     // CONNEC TED TO MONGODB SERVER
     console.log("Connected to mongod server");
 });
-mongoose.connect(mongoURL);
+var mongooConnection = mongoose.connect(mongoURL);
 
 // DEFINE MODEL
 var Parking = require('./models/parking')
@@ -28,10 +38,14 @@ var Parking = require('./models/parking')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// [CONFIGURE TO USE GAIN ACCESS TO STATICS] 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // [CONFIGURE ROUTER]
 var router = require('./routes')(app, Parking, db);
 
 // [RUN SERVER]
 var server = app.listen(port, function(){
  console.log("Express server has started on port " + port)
+ console.log(ip.address())
 });
