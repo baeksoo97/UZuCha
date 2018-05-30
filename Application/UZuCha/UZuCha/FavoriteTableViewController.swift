@@ -10,31 +10,12 @@ import UIKit
 
 class FavoriteTableViewController: UITableViewController {
     let favorParks = parks.filter({$0.is_favorite == true})
-    class FavoriteParkTableViewCell : UITableViewCell{
-        var parkForCell:Park? { didSet{
-            setUpCell()
-            }}
-        
-        @IBOutlet weak var feeView: UITextField!
-        @IBOutlet weak var detailsView: UITextField!
-        @IBOutlet weak var commentView: UITextField!
-        @IBOutlet weak var parkImageView: UIImageView!
-        
-        func setUpCell() {
-            guard let park = parkForCell else {
-                return
-            }
-            feeView.text = park.fee
-            detailsView.text = ""
-            //park.details.available_time + " | " + park.details.capacity + " |" + park.details.floor
-            commentView.text = park.owner_comment
-            parkImageView.image = UIImage(named:park.building.image)
-        }
-    }
+    
+    
     // init(_ building:Building,_ owner : Owner,_ address:Address,_ fee:String,_ is_favorite:Bool,_  details:Details,_ owner_comment:String,_ register_date: String){
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.estimatedRowHeight = 80.0
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -63,7 +44,7 @@ class FavoriteTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteParkCell", for: indexPath) as! FavoriteParkTableViewCell
-
+        print("1");
         let favoritePark = favorParks[indexPath.row]
         
         var detailsString = ""
@@ -85,13 +66,13 @@ class FavoriteTableViewController: UITableViewController {
     }
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
     /*
     // Override to support editing the table view.
@@ -120,38 +101,46 @@ class FavoriteTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "DetailParkSegue"
+        {
+            if let destination = segue.destination as? DetailViewController,
+                let selectedIndex = self.tableView.indexPathForSelectedRow?.row
+            {
+                destination.selectedPark = favorParks[selectedIndex]
+            }
+        }
+        
     }
-    */
-   
-//    class FavoriteParkTableViewCell:UITableViewCell{
-//
-//        var parkForCell:Park? { didSet{
-//            setUpCell()
-//        }}
-//
-//        @IBOutlet weak var feeView: UITextField!
-//        @IBOutlet weak var detailsView: UITextField!
-//        @IBOutlet weak var commentView: UITextField!
-//        @IBOutlet weak var parkImageView: UIImageView!
-//
-//        func setUpCell() {
-//            guard let park = parkForCell else {
-//                return
-//            }
-//            feeView.text = park.fee
-//            detailsView.text = ""
-//            //park.details.available_time + " | " + park.details.capacity + " |" + park.details.floor
-//            commentView.text = park.owner_comment
-//            parkImageView.image = UIImage(named:park.building.image)
-//        }
-//    }
-
+ 
     
+}
+
+class FavoriteParkTableViewCell : UITableViewCell{
+    var parkForCell:Park? { didSet{
+        setUpCell()
+    }}
+    @IBOutlet weak var feeView: UILabel!
+    @IBOutlet weak var detailsView: UILabel!
+    
+    @IBOutlet weak var commentView: UILabel!
+    
+    @IBOutlet weak var parkImageView: UIImageView!
+    
+    func setUpCell() {
+        guard let park = parkForCell else {
+            return
+        }
+        feeView.text = park.fee
+        detailsView.text = ""
+        //park.details.available_time + " | " + park.details.capacity + " |" + park.details.floor
+        commentView.text = park.owner_comment
+        parkImageView.image = UIImage(named:park.building.image)
+    }
 }
