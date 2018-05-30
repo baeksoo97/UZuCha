@@ -124,5 +124,21 @@ func createPark() ->[Park]{
 
     return [park1, park2, park3]
 }
+
+func createPhoneNum(phoneNum : String) -> String {
+    var string = ""
+    if(phoneNum.hasPrefix("010") == true){
+        var lowerBound = String.Index(encodedOffset: 0)
+        var upperBound = String.Index(encodedOffset: 2)
+        string += phoneNum[lowerBound...upperBound] + "-"
+        lowerBound = String.Index(encodedOffset: 3)
+        upperBound = String.Index(encodedOffset: 6)
+        string += phoneNum[lowerBound...upperBound] + "-"
+        lowerBound = String.Index(encodedOffset: 7)
+        upperBound = String.Index(encodedOffset: 10)
+        string += phoneNum[lowerBound...upperBound]
+    }
+    return string
+}
 var parks: [Park] = createPark() //global
 

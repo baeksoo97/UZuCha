@@ -18,8 +18,23 @@ class DetailViewController : UIViewController{
     @IBOutlet weak var commentView: UILabel!
     @IBOutlet weak var parkImageView: UIImageView!
     
+    @IBAction func callingButton(_ sender: Any) {
+        if let phoneNum = selectedPark?.owner.phone_num{
+            let num = createPhoneNum(phoneNum: phoneNum)
+            if let phoneCallURL = URL(string: "tel://\(num)") {
+                let application:UIApplication = UIApplication.shared
+                if (application.canOpenURL(phoneCallURL)) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        var rightFavoriteBarButtonItem : UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_like"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailViewController.switchColor(_:)))
+        self.navigationItem.setRightBarButtonItems([rightFavoriteBarButtonItem], animated: true)
+        
         feeView.text = selectedPark?.fee
         
         if let capacity = selectedPark?.details.capacity{
@@ -37,6 +52,9 @@ class DetailViewController : UIViewController{
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    @objc func switchColor(_ sender:UIButton){
+        print(1)
     }
 
 }

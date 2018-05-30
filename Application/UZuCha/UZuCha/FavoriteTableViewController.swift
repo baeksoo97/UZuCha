@@ -15,7 +15,7 @@ class FavoriteTableViewController: UITableViewController {
     // init(_ building:Building,_ owner : Owner,_ address:Address,_ fee:String,_ is_favorite:Bool,_  details:Details,_ owner_comment:String,_ register_date: String){
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.estimatedRowHeight = 80.0
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
