@@ -48,7 +48,7 @@ class DetailViewController : UIViewController{
         }
         commentView.text = selectedPark?.owner_comment
         
-        parkImageView.image = UIImage(named: (selectedPark?.building.image)!)
+        parkImageView.image = UIImage(named: (selectedPark?.building.image_dir[0])!)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

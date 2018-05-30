@@ -37,11 +37,10 @@ class FavoriteTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("ddd")
         return favorParks.count
     }
 
-    
+    	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteParkCell", for: indexPath) as! FavoriteParkTableViewCell
         print("1");
@@ -60,7 +59,7 @@ class FavoriteTableViewController: UITableViewController {
         cell.feeView?.text = favoritePark.fee
         cell.detailsView?.text = detailsString
         cell.commentView?.text = favoritePark.owner_comment
-        cell.parkImageView?.image = UIImage(named: favoritePark.building.image)
+        cell.parkImageView?.image = UIImage(named: favoritePark.building.image_dir[0])
         
         return cell
     }
@@ -141,6 +140,6 @@ class FavoriteParkTableViewCell : UITableViewCell{
         detailsView.text = ""
         //park.details.available_time + " | " + park.details.capacity + " |" + park.details.floor
         commentView.text = park.owner_comment
-        parkImageView.image = UIImage(named:park.building.image)
+        parkImageView.image = UIImage(named:park.building.image_dir[0])
     }
 }
