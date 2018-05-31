@@ -33,7 +33,7 @@ class DetailViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         var rightFavoriteBarButtonItem : UIBarButtonItem
-        if(selectedPark?.is_favorite == false){
+        if(selectedPark?.is_favorite == true){
              rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_redheart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
         }
         else{
@@ -65,7 +65,6 @@ class DetailViewController : UIViewController{
         if(selectedPark?.is_favorite == true){
             afterRightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_heart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
             selectedPark?.is_favorite = false
-            print("change false")
         }
         else{
             afterRightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_redheart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
