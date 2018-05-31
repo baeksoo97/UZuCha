@@ -6,22 +6,34 @@ struct Google_mark: Decodable {
     let longitude: Double
     let latitude: Double
 }
-
-struct JSON_Parking_type: Decodable {
-    let _id:String
-    let google_mark:Google_mark
-    
+struct Building: Decodable {
     let building_name:String
     let building_address:String
     let building_image_dir:[String]
-    
+}
+
+struct Owner: Decodable {
     let owner_name: String
     let owner_mail_address: String
     let owner_phone_number: String
+}
+
+struct Detail :Decodable {
+    let capacity: Int
+    let floor: Int
+    let available_time: String
+}
+
+struct JSON_Parking_type: Decodable {
     
-    let price: String
-    let availabe_time: String
+    let _id:String
+    
+    let google_mark:Google_mark
+    let building:Building
+    let owner:Owner
+    
     let is_favorite: Bool
+    let price: String
     
     let owner_comment: String
     
@@ -127,7 +139,7 @@ struct JSONParking {
                 do {
                     
                     parking = try JSONDecoder().decode(JSON_Parking_type.self, from: data)
-                    input_image_string = parking.building_image_dir
+                    input_image_string = parking.building.building_image_dir
                     
                     for image_path in input_image_string {
                         result_image_string.append(basePath + image_path)

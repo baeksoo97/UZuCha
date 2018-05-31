@@ -29,7 +29,7 @@ class ViewController: UIViewController {
                 print("\(result)\n")
                 
                 // JSON 부분 데이터 활용할 때
-                print("\(result.building_address)")
+                print("\(result.building.building_address)")
                 print("\(result.google_mark.latitude)")
                 print("\n")
             }
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         JSONParking.getParkingByID(id: "5b0d7e164f0fc30e871c8015") { (result:JSON_Parking_type) in
             // result : JSON type
             print("\(result)")
-            print("\(result.building_name)\n")
+            print("\(result.building.building_name)\n")
         }
         
         

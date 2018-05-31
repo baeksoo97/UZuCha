@@ -17,19 +17,25 @@ module.exports = function(app, Parking, db)
                     longitude: 37.561059,
                     latitude: 127.047754
                 },
-                
-                building_name: "김원준의 해피하우스",
-                building_image_dir: ["images/1_1.jpg", "images/1_2.jpg", "images/1_3.jpg"], 
-                building_address: "서울시 성동구 사근동 61길, 광덕 빌딩",
-                
-                // park_owner
-                owner_name: "김원준",
-                owner_mail_address: "abc123@naver.com",
-                owner_phone_number: "010-2915-1816",
-                
-                price: "1000원 / 시간",
-                availabe_time: "하루 종일",
 
+                building: {
+                    building_name: "김원준의 해피하우스",
+                    building_image_dir: ["images/1_1.jpg", "images/1_2.jpg", "images/1_3.jpg"], 
+                    building_address: "서울시 성동구 사근동 61길, 광덕 빌딩"
+                },
+
+                owner : {
+                    owner_name: "김원준",
+                    owner_mail_address: "abc123@naver.com",
+                    owner_phone_number: "010-2915-1816",
+                },
+
+                detail : {
+                    capacity: 10,
+                    floor: 3,
+                    available_time: "하루 종일",
+                },
+                price: "1000원 / 시간",
                 owner_comment: "흥정 없습니다.. 쿨거래 원합니다 ^^",
     
             }).save();
@@ -39,19 +45,26 @@ module.exports = function(app, Parking, db)
                     longitude: 37.560975,
                     latitude: 127.045738
                 },
-                
-                building_name: "샘플빌딩",
-                building_image_dir: ["images/2_1.jpg", "images/2_2.jpg", "images/2_3.jpg"],
-                building_address: "서울시 성동구 사근동 58길, 샘플빌딩",
-                
-                // park_owner
-                owner_name: "김부자",
-                owner_mail_address: "abc123@gmail.com",
-                owner_phone_number: "010-1313-2424",
-                
-                price: "한달 정기권 5만원",
-                availabe_time: "저녁에만 가능",
 
+                building: {
+                    building_name: "샘플빌딩",
+                    building_image_dir: ["images/2_1.jpg", "images/2_2.jpg", "images/2_3.jpg"],
+                    building_address: "서울시 성동구 사근동 58길, 샘플빌딩"
+                },
+
+                owner : {
+                    owner_name: "김부자",
+                    owner_mail_address: "abc123@gmail.com",
+                    owner_phone_number: "010-1313-2424"
+                },
+
+                detail : {
+                    capacity: 2,
+                    floor: 2,
+                    available_time: "평일 오후 5시~ 10시 사이에만 가능",
+                },
+
+                price: "한달 정기권 5만원",
                 owner_comment: "안녕 얘들아 많이 이용해줘",
     
             }).save();
@@ -116,23 +129,27 @@ module.exports = function(app, Parking, db)
                 longitude: reqBody.google_mark.longitude,
                 latitude: reqBody.google_mark.latitude
             },
-            
-            building_name: reqBody.building_name,
-            //building_image_dir: [ {img_dir: String} ], 
-            building_address: reqBody.building_address,
-            
-            // park_owner
-            owner_name: reqBody.owner_name,
-            owner_mail_address: reqBody.owner_mail_address,
-            owner_phone_number: reqBody.owner_phone_number,
-            
+
+            building: {
+                building_name: reqBody.building.building_name,
+                building_image_dir: reqBody.building.building_image_dir, 
+                building_address: reqBody.building.building_address
+            },
+
+            owner : {
+                owner_name: reqBody.owner.owner_name,
+                owner_mail_address: reqBody.owner.owner_mail_address,
+                owner_phone_number: reqBody.owner.owner_phone_number
+            },
+
+            detail : {
+                capacity: reqBody.detail.capacity,
+                floor: reqBody.detail.floor,
+                available_time: reqBody.detail.available_time
+            },
+
             price: reqBody.price,
-            availabe_time: reqBody.availabe_time,
-            //is_favorite: { type: Boolean, default: false },
-
             owner_comment: reqBody.owner_comment,
-            //created_at: { type: Date, default: Date.now }
-
         });
 
         // save data in DB
