@@ -9,47 +9,21 @@
 import Foundation
 import UIKit
 
-//var ParkingSchema = new Schema({
-//    // Google Map
-//    google_mark: {
-//        longitude: { type: Number, required: true},
-//        latitude: { type: Number, required: true},
-//        markerName: String
-//    },
-//
-//    building_name: { type: String, required: true },
-//    building_image_dir: [ {img_dir: String} ],
-//    building_Map_location: { type: String, required: true },
-//
-//    // park_owner
-//    owner_name: String,
-//    owner_mail_Map_location: String,
-//    owner_phone_number: String,
-//
-//    price: String,
-//    availabe_time: String,
-//    is_favorite: { type: Boolean, default: false },
-//
-//    detailed_info: String,
-//    owner_comment: String,
-//
-//    created_at: { type: Date, default: Date.now }
-//});
 
 class Park{
-    let building : Building
-    let owner : Owner
-    let Map_location : Map_location
+    let building : BuildingStr
+    let owner : OwnerStr
+    let Map_location : Map_locationStr
     let fee : String
     var is_favorite : Bool
     
     //details
-    let details : Details
+    let details : DetailsStr
     
     let owner_comment : String
     
 //    let register_date : Date  //자료형 어째야 할지 모르겟음
-    init(_ building:Building,_ owner : Owner,_ Map_location:Map_location,_ fee:String,_ is_favorite:Bool,_  details:Details,_ owner_comment:String){
+    init(_ building:BuildingStr,_ owner : OwnerStr,_ Map_location:Map_locationStr,_ fee:String,_ is_favorite:Bool,_  details:DetailsStr,_ owner_comment:String){
         self.building = building
         self.owner = owner
         self.Map_location = Map_location
@@ -60,7 +34,7 @@ class Park{
        // self.register_date = register_date
     }
 }
-class Building{
+class BuildingStr{
     let name : String
     let image_dir : [String]
     let address: String
@@ -70,7 +44,7 @@ class Building{
         self.address = address
     }
 }
-class Owner{
+class OwnerStr{
     let name : String
     let phone_num : String
     let mail_addr : String
@@ -81,7 +55,7 @@ class Owner{
     }
 }
 
-class Map_location{
+class Map_locationStr{
     let latitude : Double
     let longitude : Double
     init(_ latitude : Double,_ longitude : Double){
@@ -89,7 +63,7 @@ class Map_location{
         self.longitude = longitude
     }
 }
-class Details{
+class DetailsStr{
     let capacity : Int  //주차 공간 수
     let floor : Int  //지하는 '-'로 표현
     let available_time : String     //주차 가능 시간
@@ -99,7 +73,7 @@ class Details{
         self.available_time = available_time
     }
 }
-
+/*
 let building1 = Building("한양대학교", ["img_building1"],"서울시 성동구 왕십리로 19-101")
 let building2 = Building("왕십리역", ["img_building2"],"서울시 성동구 왕십리로 29")
 let building3 = Building("행당역", ["img_building3"], "서울시 성동구 행당로 82")
@@ -123,7 +97,7 @@ func createPark() ->[Park]{
 
     return [park1, park2, park3]
 }
-
+*/
 func createPhoneNum(phoneNum : String) -> String {
     var string = ""
     if(phoneNum.hasPrefix("010") == true){
@@ -139,5 +113,32 @@ func createPhoneNum(phoneNum : String) -> String {
     }
     return string
 }
-var parks: [Park] = createPark() //global
+ 
+
+// 2018.5.31 김원준
+// 서버에서 JSON 형식으로 현존하는 모든 데이터를 받아와 class에 대입
+func createPark(completion: @escaping ([Park]) -> ()) {
+    
+    // return Park
+    var retPark:[Park] = [];
+    
+    JSONParking.getAllParkingsJSON() { (results:[JSON_Parking_type]) in
+        // results: JSON 타입의 배열
+        for result in results {
+            
+            let building = BuildingStr(result.building.building_name, result.building.building_image_dir, result.building.building_address)
+            
+            let owner = OwnerStr(result.owner.owner_name, result.owner.owner_phone_number, result.owner.owner_mail_address)
+            
+            let map_location = Map_locationStr(result.google_mark.latitude, result.google_mark.longitude)
+            
+            let details = DetailsStr(result.detail.capacity, result.detail.floor, result.detail.available_time)
+            
+            let park:Park = Park(building, owner, map_location, result.price, result.is_favorite, details, result.owner_comment)
+        
+            retPark.append(park);
+        }
+        completion(retPark)
+    }
+}
 

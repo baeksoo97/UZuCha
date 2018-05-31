@@ -9,12 +9,20 @@
 import UIKit
 
 class FavoriteTableViewController: UITableViewController {
-    let favorParks = parks.filter({$0.is_favorite == true})
+    //let favorParks = parks.filter({$0.is_favorite == true})
+    var favorParks:[Park] = []
     
     
     // init(_ building:Building,_ owner : Owner,_ address:Address,_ fee:String,_ is_favorite:Bool,_  details:Details,_ owner_comment:String,_ register_date: String){
     override func viewDidLoad() {
         super.viewDidLoad()
+        createPark() { (results:[Park]) in
+            for result in results {
+                print(result.fee)
+            }
+            self.favorParks = results.filter({$0.is_favorite == true})
+        }
+        
         tableView.estimatedRowHeight = 80.0
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

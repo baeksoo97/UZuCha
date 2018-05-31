@@ -2,23 +2,23 @@
 
 import Foundation
 
-struct _decodableGoogle_mark: Decodable {
+struct Google_mark: Decodable {
     let longitude: Double
     let latitude: Double
 }
-struct _decodableBuilding: Decodable {
+struct Building: Decodable {
     let building_name:String
     let building_address:String
     let building_image_dir:[String]
 }
 
-struct _decodableOwner: Decodable {
+struct Owner: Decodable {
     let owner_name: String
     let owner_mail_address: String
     let owner_phone_number: String
 }
 
-struct _decodableDetail :Decodable {
+struct Detail: Decodable {
     let capacity: Int
     let floor: Int
     let available_time: String
@@ -28,9 +28,10 @@ struct JSON_Parking_type: Decodable {
     
     let _id:String
     
-    let google_mark:_decodableGoogle_mark
-    let building:_decodableBuilding
-    let owner:_decodableOwner
+    let google_mark:Google_mark
+    let building:Building
+    let owner:Owner
+    let detail:Detail
     
     let is_favorite: Bool
     let price: String
@@ -72,7 +73,9 @@ struct JSONParking {
                     parkingArray = try JSONDecoder().decode([JSON_Parking_type].self, from: data)
                     
                 } catch {
-                    print(error.localizedDescription)
+                    print("\n\n")
+                    print(error)
+                    print("\n\n")
                 }
                 
                 completion(parkingArray)

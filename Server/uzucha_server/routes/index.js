@@ -148,6 +148,7 @@ module.exports = function(app, Parking, db)
                 available_time: reqBody.detail.available_time
             },
 
+            is_favorite: reqBody.is_favorite,
             price: reqBody.price,
             owner_comment: reqBody.owner_comment,
         });
