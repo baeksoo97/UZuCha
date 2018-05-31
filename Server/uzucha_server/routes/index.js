@@ -33,7 +33,7 @@ module.exports = function(app, Parking, db)
                 detail : {
                     capacity: 10,
                     floor: 3,
-                    availabe_time: "하루 종일",
+                    available_time: "하루 종일",
                 },
                 price: "1000원 / 시간",
                 owner_comment: "흥정 없습니다.. 쿨거래 원합니다 ^^",
@@ -61,7 +61,7 @@ module.exports = function(app, Parking, db)
                 detail : {
                     capacity: 2,
                     floor: 2,
-                    availabe_time: "평일 오후 5시~ 10시 사이에만 가능",
+                    available_time: "평일 오후 5시~ 10시 사이에만 가능",
                 },
 
                 price: "한달 정기권 5만원",
@@ -145,7 +145,7 @@ module.exports = function(app, Parking, db)
             detail : {
                 capacity: reqBody.detail.capacity,
                 floor: reqBody.detail.floor,
-                availabe_time: reqBody.detail.availabe_time
+                available_time: reqBody.detail.available_time
             },
 
             price: reqBody.price,

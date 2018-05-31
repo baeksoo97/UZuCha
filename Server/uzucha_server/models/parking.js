@@ -27,7 +27,7 @@ var ParkingSchema = new Schema({
     detail : {
         capacity: Number,
         floor: Number,
-        availabe_time: String,
+        available_time: String,
     },
 
     price: { type: String, required: true},
