@@ -71,6 +71,7 @@ class FavoriteTableViewController: UITableViewController {
         detailsString += favoritePark.details.available_time
    
         cell.feeView?.text = favoritePark.fee
+        cell.feeView?.font = UIFont.boldSystemFont(ofSize: 18.0)
         cell.detailsView?.text = detailsString
         cell.commentView?.text = favoritePark.owner_comment
         cell.parkImageView?.image = UIImage(named: favoritePark.building.image_dir[0])

@@ -8,15 +8,17 @@
 
 import UIKit
 
-class DetailViewController : UIViewController{
+class DetailViewController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+    
+    @IBOutlet weak var imageCollection: UICollectionView!
     var selectedPark : Park?
+    var imageArray = [UIImage(named : "img_building1"),UIImage(named : "img_building2"),UIImage(named : "img_building3")]
     
     @IBOutlet weak var feeView: UILabel!
     @IBOutlet weak var detailsCapacityView: UILabel!
     @IBOutlet weak var detailsAvailableTimeView: UILabel!
     @IBOutlet weak var detailsFloorView: UILabel!
     @IBOutlet weak var commentView: UILabel!
-    @IBOutlet weak var parkImageView: UIImageView!
     
     @IBAction func callingButton(_ sender: Any) {
         if let phoneNum = selectedPark?.owner.phone_num{
@@ -43,6 +45,7 @@ class DetailViewController : UIViewController{
         self.navigationItem.setRightBarButtonItems([rightFavoriteBarButtonItem], animated: true)
         
         feeView.text = selectedPark?.fee
+        feeView.font = UIFont.boldSystemFont(ofSize: 21.0)
         
         if let capacity = selectedPark?.details.capacity{
             detailsCapacityView.text = "\(capacity)" + "대"
@@ -54,12 +57,16 @@ class DetailViewController : UIViewController{
                 detailsFloorView.text = "지하 " + "\(-floor)" + "층"}
         }
         commentView.text = selectedPark?.owner_comment
+        commentView.font = UIFont.boldSystemFont(ofSize: 14.0)
         
-        parkImageView.image = UIImage(named: (selectedPark?.building.image_dir[0])!)
+        imageCollection.dataSource = self
+        imageCollection.delegate = self
+//        parkImageView.image = UIImage(named: (selectedPark?.building.image_dir[0])!)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     @objc func switchColor(){
         var afterRightFavoriteBarButtonItem : UIBarButtonItem
         if(selectedPark?.is_favorite == true){
@@ -72,6 +79,17 @@ class DetailViewController : UIViewController{
             print("change true")
         }
         self.navigationItem.setRightBarButtonItems([afterRightFavoriteBarButtonItem], animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imageArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ParkImageCollectionViewCell", for: indexPath) as! ParkImageCollectionViewCell
+        print("hello")
+        cell.parkImage.image = imageArray[indexPath.row]
+        return cell
     }
 
 }
