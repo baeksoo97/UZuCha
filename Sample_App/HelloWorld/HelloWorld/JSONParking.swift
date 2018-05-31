@@ -2,23 +2,23 @@
 
 import Foundation
 
-struct Google_mark: Decodable {
+struct _decodableGoogle_mark: Decodable {
     let longitude: Double
     let latitude: Double
 }
-struct Building: Decodable {
+struct _decodableBuilding: Decodable {
     let building_name:String
     let building_address:String
     let building_image_dir:[String]
 }
 
-struct Owner: Decodable {
+struct _decodableOwner: Decodable {
     let owner_name: String
     let owner_mail_address: String
     let owner_phone_number: String
 }
 
-struct Detail :Decodable {
+struct _decodableDetail :Decodable {
     let capacity: Int
     let floor: Int
     let available_time: String
@@ -28,9 +28,9 @@ struct JSON_Parking_type: Decodable {
     
     let _id:String
     
-    let google_mark:Google_mark
-    let building:Building
-    let owner:Owner
+    let google_mark:_decodableGoogle_mark
+    let building:_decodableBuilding
+    let owner:_decodableOwner
     
     let is_favorite: Bool
     let price: String
