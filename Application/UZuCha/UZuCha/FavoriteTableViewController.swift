@@ -16,19 +16,25 @@ class FavoriteTableViewController: UITableViewController {
     // init(_ building:Building,_ owner : Owner,_ address:Address,_ fee:String,_ is_favorite:Bool,_  details:Details,_ owner_comment:String,_ register_date: String){
     override func viewDidLoad() {
         super.viewDidLoad()
-        createPark() { (results:[Park]) in
-            for result in results {
-                print(result.fee)
-            }
-            self.favorParks = results.filter({$0.is_favorite == true})
-        }
-        
+
         tableView.estimatedRowHeight = 80.0
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        createPark() { (results:[Park]) in
+            self.favorParks = results.filter({$0.is_favorite == true})
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
