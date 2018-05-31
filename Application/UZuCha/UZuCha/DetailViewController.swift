@@ -32,7 +32,14 @@ class DetailViewController : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var rightFavoriteBarButtonItem : UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_like"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailViewController.switchColor(_:)))
+        var rightFavoriteBarButtonItem : UIBarButtonItem
+        if(selectedPark?.is_favorite == false){
+             rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_redheart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
+        }
+        else{
+             rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_heart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
+        }
+       
         self.navigationItem.setRightBarButtonItems([rightFavoriteBarButtonItem], animated: true)
         
         feeView.text = selectedPark?.fee
@@ -53,8 +60,19 @@ class DetailViewController : UIViewController{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    @objc func switchColor(_ sender:UIButton){
-        print(1)
+    @objc func switchColor(){
+        var afterRightFavoriteBarButtonItem : UIBarButtonItem
+        if(selectedPark?.is_favorite == true){
+            afterRightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_heart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
+            selectedPark?.is_favorite = false
+            print("change false")
+        }
+        else{
+            afterRightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_redheart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
+            selectedPark?.is_favorite = true
+            print("change true")
+        }
+        self.navigationItem.setRightBarButtonItems([afterRightFavoriteBarButtonItem], animated: true)
     }
 
 }

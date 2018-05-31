@@ -41,7 +41,7 @@ class Park{
     let owner : Owner
     let Map_location : Map_location
     let fee : String
-    let is_favorite : Bool
+    var is_favorite : Bool
     
     //details
     let details : Details
