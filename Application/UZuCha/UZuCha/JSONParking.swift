@@ -128,6 +128,12 @@ struct JSONParking {
             print("ERROR: CANNOT CREATE URL")
             return
         }
+//        var image[]
+//        for i in 1...arr.count {
+//            var string11
+//            string11 += apiURL +arr[i]
+//            image[i] = string11
+//        }
         
         let request = URLRequest(url: url)
         

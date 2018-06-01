@@ -10,6 +10,7 @@
 		483BC12320BB09780035AA77 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483BC12220BB09780035AA77 /* DetailViewController.swift */; };
 		485DA20720B6AF3F00346C76 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485DA20620B6AF3F00346C76 /* FavoriteTableViewController.swift */; };
 		485DA20920B6B04700346C76 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485DA20820B6B04700346C76 /* Data.swift */; };
+		48DE4A6120C13840001459FB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DE4A6020C13840001459FB /* HomeViewController.swift */; };
 		48FE1DC620BFEE51001B4106 /* JSONParking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE1DC520BFEE51001B4106 /* JSONParking.swift */; };
 		48FE1DC820BFF2E0001B4106 /* ParkImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE1DC720BFF2E0001B4106 /* ParkImageCollectionViewCell.swift */; };
 		906FD5F120BAEF4800E583C2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906FD5F020BAEF4800E583C2 /* MapViewController.swift */; };
@@ -45,6 +46,7 @@
 		483BC12220BB09780035AA77 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		485DA20620B6AF3F00346C76 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		485DA20820B6B04700346C76 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		48DE4A6020C13840001459FB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		48FE1DC520BFEE51001B4106 /* JSONParking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParking.swift; sourceTree = "<group>"; };
 		48FE1DC720BFF2E0001B4106 /* ParkImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		906FD5F020BAEF4800E583C2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				C5F0054220A432FF00DE7B8D /* LaunchScreen.storyboard */,
 				C5F0054520A432FF00DE7B8D /* Info.plist */,
 				906FD5F020BAEF4800E583C2 /* MapViewController.swift */,
+				48DE4A6020C13840001459FB /* HomeViewController.swift */,
 			);
 			path = UZuCha;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				C5F0053A20A432FE00DE7B8D /* AppDelegate.swift in Sources */,
 				485DA20720B6AF3F00346C76 /* FavoriteTableViewController.swift in Sources */,
 				485DA20920B6B04700346C76 /* Data.swift in Sources */,
+				48DE4A6120C13840001459FB /* HomeViewController.swift in Sources */,
 				483BC12320BB09780035AA77 /* DetailViewController.swift in Sources */,
 				48FE1DC820BFF2E0001B4106 /* ParkImageCollectionViewCell.swift in Sources */,
 				48FE1DC620BFEE51001B4106 /* JSONParking.swift in Sources */,

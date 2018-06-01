@@ -20,60 +20,61 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="892-my-9n3" kind="relationship" relationship="viewControllers" id="2CL-tv-aKI"/>
-                        <segue destination="KWe-ef-FGE" kind="relationship" relationship="viewControllers" id="N8c-mC-xOp"/>
-                        <segue destination="3hq-EE-n9e" kind="relationship" relationship="viewControllers" id="JnP-0s-n49"/>
+                        <segue destination="lLm-XE-Kor" kind="relationship" relationship="viewControllers" id="HVk-Pr-hde"/>
+                        <segue destination="KWe-ef-FGE" kind="relationship" relationship="viewControllers" id="Bzf-oQ-kXW"/>
+                        <segue destination="3hq-EE-n9e" kind="relationship" relationship="viewControllers" id="Dz7-92-eCe"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nel-Kv-lOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-954" y="-295"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="f8b-Kb-4UE">
+        <!--홈-->
+        <scene sceneID="9Ca-S2-W3M">
             <objects>
-                <tableViewController id="K5Z-Vw-OM1" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PrA-cP-wsz">
+                <viewController id="lLm-XE-Kor" customClass="HomeViewController" customModule="UZuCha" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Afj-6h-Iq4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="우리집에서 주차하고 갈래?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngY-Bi-zK8">
+                                <rect key="frame" x="16" y="152" width="315" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="우리집에서 주차하고 갈래?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ci1-dG-ojJ">
+                                <rect key="frame" x="16" y="187" width="315" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lA2-Lc-Mrh">
+                                <rect key="frame" x="16" y="20" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="home_logo" translatesAutoresizingMaskIntoConstraints="NO" id="9xh-DV-7L9">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4rU-QV-YyX">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4rU-QV-YyX" id="8JN-0G-1p5">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="K5Z-Vw-OM1" id="mK3-IW-WGh"/>
-                            <outlet property="delegate" destination="K5Z-Vw-OM1" id="qSx-Vu-qOk"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Peg-Xt-Heg"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qPL-f6-dOW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="630" y="-980"/>
-        </scene>
-        <!--홈-->
-        <scene sceneID="ne3-VM-wro">
-            <objects>
-                <navigationController id="892-my-9n3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" image="icon_home" id="8gc-5R-9zk"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DHH-A1-fr3">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
+                        <viewLayoutGuide key="safeArea" id="f8s-ah-RfQ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="홈" image="icon_home" id="rxD-FM-ews"/>
+                    <navigationItem key="navigationItem" id="KED-fA-a62"/>
                     <connections>
-                        <segue destination="K5Z-Vw-OM1" kind="relationship" relationship="rootViewController" id="S9e-LJ-ySx"/>
+                        <outlet property="titleView" destination="ngY-Bi-zK8" id="71z-l3-kDS"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zm4-hj-y1u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b3T-at-2cu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-207" y="-980"/>
+            <point key="canvasLocation" x="552.79999999999995" y="-980.05997001499259"/>
         </scene>
         <!--관심 목록-->
         <scene sceneID="gbf-ce-uCR">
@@ -99,14 +100,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4대 | 1층 | 9:00AM~10:00AM " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9O-NK-k4h">
-                                            <rect key="frame" x="16" y="45" width="239" height="21"/>
+                                            <rect key="frame" x="16" y="60" width="239" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="왕십리역 약 3분 기둥 없음 주차하기 편함 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsM-2J-N1c">
-                                            <rect key="frame" x="16" y="74" width="239" height="21"/>
+                                            <rect key="frame" x="15" y="78" width="239" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -116,9 +117,17 @@
                                             <rect key="frame" x="250" y="14" width="114" height="85"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="서울시 성동구 행당로 82 행당한진타운아파트" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyb-2a-3Cq">
+                                            <rect key="frame" x="15" y="42" width="239" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="addressView" destination="Qyb-2a-3Cq" id="BX5-Tw-m5F"/>
                                     <outlet property="commentView" destination="bsM-2J-N1c" id="wX9-5b-zKe"/>
                                     <outlet property="detailsView" destination="N9O-NK-k4h" id="E6p-DT-X2t"/>
                                     <outlet property="feeView" destination="fyF-ic-anR" id="p9G-3J-E2A"/>
@@ -228,14 +237,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="왕십리역 약 3분 기둥 없음 주차하기 편함 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ll-LA-b3e">
-                                <rect key="frame" x="68" y="317" width="239" height="21"/>
+                                <rect key="frame" x="16" y="317" width="342" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="/소 5000/중 5000/대 2000/" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFX-1U-vDw">
-                                <rect key="frame" x="5" y="286" width="364" height="30"/>
+                                <rect key="frame" x="16" y="286" width="342" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
@@ -307,8 +316,8 @@
                                     <action selector="callingButton:" destination="Zn5-fU-z3b" eventType="touchUpInside" id="24w-9d-Hvd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="서울시 성동구 행당로 82 행당한진타운아파트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JK-wY-3QA">
-                                <rect key="frame" x="36" y="453" width="303" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="서울시 성동구 행당로 82 행당한진타운아파트" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JK-wY-3QA">
+                                <rect key="frame" x="16" y="453" width="342" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -325,6 +334,7 @@
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addressView" destination="1JK-wY-3QA" id="RgZ-bt-8Uj"/>
                         <outlet property="commentView" destination="4Ll-LA-b3e" id="66f-HY-69i"/>
                         <outlet property="detailsAvailableTimeView" destination="9uf-NH-xCA" id="Qdj-rE-uv6"/>
                         <outlet property="detailsCapacityView" destination="GBV-NP-Y4Q" id="ZlW-ye-7C7"/>
@@ -342,6 +352,7 @@
         <image name="details_available_time" width="33" height="32"/>
         <image name="details_capacity" width="33" height="32"/>
         <image name="details_floor" width="33" height="32"/>
+        <image name="home_logo" width="50" height="45"/>
         <image name="icon_home" width="29" height="29"/>
         <image name="icon_like" width="29" height="30"/>
         <image name="icon_map" width="30" height="30"/>

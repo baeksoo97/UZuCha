@@ -11,6 +11,7 @@ import UIKit
 
 
 class Park{
+    let id : String
     let building : BuildingStr
     let owner : OwnerStr
     let Map_location : Map_locationStr
@@ -23,7 +24,7 @@ class Park{
     let owner_comment : String
     
 //    let register_date : Date  //자료형 어째야 할지 모르겟음
-    init(_ building:BuildingStr,_ owner : OwnerStr,_ Map_location:Map_locationStr,_ fee:String,_ is_favorite:Bool,_  details:DetailsStr,_ owner_comment:String){
+    init(_ id: String, _ building:BuildingStr,_ owner : OwnerStr,_ Map_location:Map_locationStr,_ fee:String,_ is_favorite:Bool,_  details:DetailsStr,_ owner_comment:String){
         self.building = building
         self.owner = owner
         self.Map_location = Map_location
@@ -31,6 +32,7 @@ class Park{
         self.is_favorite = is_favorite
         self.details = details
         self.owner_comment = owner_comment
+        self.id = id
        // self.register_date = register_date
     }
 }
@@ -134,7 +136,7 @@ func createPark(completion: @escaping ([Park]) -> ()) {
             
             let details = DetailsStr(result.detail.capacity, result.detail.floor, result.detail.available_time)
             
-            let park:Park = Park(building, owner, map_location, result.price, result.is_favorite, details, result.owner_comment)
+            let park:Park = Park(result._id, building, owner, map_location, result.price, result.is_favorite, details, result.owner_comment)
         
             retPark.append(park);
         }

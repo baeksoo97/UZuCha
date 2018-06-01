@@ -17,7 +17,6 @@ class FavoriteTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.estimatedRowHeight = 80.0
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -35,6 +34,7 @@ class FavoriteTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,7 +57,8 @@ class FavoriteTableViewController: UITableViewController {
     	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteParkCell", for: indexPath) as! FavoriteParkTableViewCell
-        print("1");
+        
+        
         let favoritePark = favorParks[indexPath.row]
         
         var detailsString = ""
@@ -66,12 +67,14 @@ class FavoriteTableViewController: UITableViewController {
             detailsString += "지하" + "\(-favoritePark.details.floor)" + "층 | "
         }
         else{
-            detailsString += "\(favoritePark.details.floor)" + "층 "
+            detailsString += "\(favoritePark.details.floor)" + "층 | "
         }
         detailsString += favoritePark.details.available_time
-   
+        print(favoritePark.details.available_time)
+        
         cell.feeView?.text = favoritePark.fee
         cell.feeView?.font = UIFont.boldSystemFont(ofSize: 18.0)
+        cell.addressView?.text = favoritePark.building.address
         cell.detailsView?.text = detailsString
         cell.commentView?.text = favoritePark.owner_comment
         cell.parkImageView?.image = UIImage(named: favoritePark.building.image_dir[0])
@@ -145,6 +148,7 @@ class FavoriteParkTableViewCell : UITableViewCell{
     
     @IBOutlet weak var commentView: UILabel!
     
+    @IBOutlet weak var addressView: UILabel!
     @IBOutlet weak var parkImageView: UIImageView!
     
     func setUpCell() {
@@ -152,8 +156,8 @@ class FavoriteParkTableViewCell : UITableViewCell{
             return
         }
         feeView.text = park.fee
+        addressView.text = park.building.address
         detailsView.text = ""
-        //park.details.available_time + " | " + park.details.capacity + " |" + park.details.floor
         commentView.text = park.owner_comment
         parkImageView.image = UIImage(named:park.building.image_dir[0])
     }

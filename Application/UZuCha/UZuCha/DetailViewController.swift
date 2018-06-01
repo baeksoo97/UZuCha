@@ -19,7 +19,8 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var detailsAvailableTimeView: UILabel!
     @IBOutlet weak var detailsFloorView: UILabel!
     @IBOutlet weak var commentView: UILabel!
-    
+    @IBOutlet weak var addressView: UILabel!
+   
     @IBAction func callingButton(_ sender: Any) {
         if let phoneNum = selectedPark?.owner.phone_num{
             let num = createPhoneNum(phoneNum: phoneNum)
@@ -34,6 +35,7 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //var image : [String] = selectedPark?.building.image_dir
         var rightFavoriteBarButtonItem : UIBarButtonItem
         if(selectedPark?.is_favorite == true){
              rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_redheart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
@@ -56,9 +58,11 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
             else{
                 detailsFloorView.text = "지하 " + "\(-floor)" + "층"}
         }
+        detailsAvailableTimeView.text = selectedPark?.details.available_time
         commentView.text = selectedPark?.owner_comment
         commentView.font = UIFont.boldSystemFont(ofSize: 14.0)
-        
+        addressView.text = selectedPark?.building.address
+            
         imageCollection.dataSource = self
         imageCollection.delegate = self
 //        parkImageView.image = UIImage(named: (selectedPark?.building.image_dir[0])!)
