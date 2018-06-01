@@ -14,6 +14,8 @@ import GoogleMaps
 class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate,GMSMapViewDelegate{
     var locationManager = CLLocationManager()
     
+    var parks:[Park] = []
+
 
 
     @IBOutlet weak var mapView: GMSMapView!
@@ -61,7 +63,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
                 
                 let camera = GMSCameraPosition.camera(withLatitude: latitude_!, longitude: longtitude_!, zoom: 15.0)
                 self.mapView?.animate(to: camera)
-                self.setupMarker()
+                self.getMarker()
                 self.view = self.mapView
             }
             
@@ -76,17 +78,20 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
         return newImage
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initGoogleMaps()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         mapView?.delegate = self
         
         locationManager.delegate = self
-
-
-        initGoogleMaps()
-        setupMarker()
+        
+        getMarker()
 
     }
     
@@ -101,29 +106,42 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
 
     }
     
+    func getMarker(){
+        print("getmarker")
+        createPark() { (results:[Park]) in
+            
+            self.parks = results
+            
+            DispatchQueue.main.async {
+                self.setupMarker()
+            }
+   
+        }
+    }
+    
     func setupMarker(){
         print("setupMarker")
+
         let markerImage = UIImage(named: "marker_icon")!.withRenderingMode(.alwaysTemplate)
         let markerView = UIImageView(image: markerImage)
         markerView.tintColor = UIColor.red
         
-        let marker1 : GMSMarker?
-        marker1 = GMSMarker()
-        marker1?.position = CLLocationCoordinate2DMake(37.555769,127.049195)
-        marker1?.title = "한양대학교 IT/BT 주차장"
-        marker1?.icon = self.imageWithImage(image: UIImage(named: "marker_icon")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
-        marker1?.opacity = 0.6
-        marker1?.snippet = "한양대학교 IT/BT 주차장입니다."
-        marker1?.map = mapView
-        
-        let marker2 : GMSMarker?
-        marker2 = GMSMarker()
-        marker2?.position = CLLocationCoordinate2DMake(37.561251,127.047674)
-        marker2?.title = "사근동 광덕빌딩 주차장"
-        marker2?.icon = self.imageWithImage(image: UIImage(named: "marker_icon")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
-        marker2?.opacity = 0.6
-        marker2?.snippet = "사근동 광덕빌딩 주차장입니다."
-        marker2?.map = mapView
+        for i in 0...(parks.count - 1){
+
+            var parking_lot : GMSMarker?
+            parking_lot = GMSMarker()
+            parking_lot?.position = CLLocationCoordinate2DMake(parks[i].Map_location.longitude, parks[i].Map_location.latitude)
+            parking_lot?.title = parks[i].building.name
+            parking_lot?.snippet = parks[i].building.address
+            parking_lot?.icon = self.imageWithImage(image: UIImage(named: "marker_icon")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
+
+            
+
+            parking_lot?.map = self.mapView
+            self.view = mapView
+
+        }
+
         
         self.view = mapView
     }
