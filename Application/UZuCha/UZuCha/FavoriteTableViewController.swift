@@ -9,18 +9,32 @@
 import UIKit
 
 class FavoriteTableViewController: UITableViewController {
-    let favorParks = parks.filter({$0.is_favorite == true})
+    //let favorParks = parks.filter({$0.is_favorite == true})
+    var favorParks:[Park] = []
     
     
     // init(_ building:Building,_ owner : Owner,_ address:Address,_ fee:String,_ is_favorite:Bool,_  details:Details,_ owner_comment:String,_ register_date: String){
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.estimatedRowHeight = 80.0
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        createPark() { (results:[Park]) in
+            self.favorParks = results.filter({$0.is_favorite == true})
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +71,7 @@ class FavoriteTableViewController: UITableViewController {
         detailsString += favoritePark.details.available_time
    
         cell.feeView?.text = favoritePark.fee
+        cell.feeView?.font = UIFont.boldSystemFont(ofSize: 18.0)
         cell.detailsView?.text = detailsString
         cell.commentView?.text = favoritePark.owner_comment
         cell.parkImageView?.image = UIImage(named: favoritePark.building.image_dir[0])
