@@ -128,6 +128,7 @@ func createPark(completion: @escaping ([Park]) -> ()) {
         // results: JSON 타입의 배열
         for result in results {
             
+            
             let building = BuildingStr(result.building.building_name, result.building.building_image_dir, result.building.building_address)
             
             let owner = OwnerStr(result.owner.owner_name, result.owner.owner_phone_number, result.owner.owner_mail_address)
@@ -140,6 +141,8 @@ func createPark(completion: @escaping ([Park]) -> ()) {
         
             retPark.append(park);
         }
+        
+        print(retPark[0].building.image_dir)
         completion(retPark)
     }
 }

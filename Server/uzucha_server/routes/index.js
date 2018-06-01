@@ -1,6 +1,6 @@
 // routes/index.js
 
-module.exports = function(app, Parking, db)
+module.exports = function(app, Parking, db, serializer)
 {
     app.get('/', function (req, res) {
         res.send('<html><body><h1>Server is On!</h1></body></html>');
@@ -84,6 +84,7 @@ module.exports = function(app, Parking, db)
     app.get('/api/parkings', function(req,res){
         Parking.find(function(err, parkings){
             if(err) return res.status(500).send({error: 'database failure'});
+            
             res.json(parkings);
         })
     });
@@ -166,26 +167,29 @@ module.exports = function(app, Parking, db)
         });
     });
 
-    /*
-    // UPDATE THE PARKING
+    
+    // UPDATE THE PARKING FAVORITE
     // USING PUT METHOD
-    app.put('/api/parkings/:parking_id', function(req, res){
-        Book.findById(req.params.book_id, function(err, book){
+    app.put('/api/parkings/toggleFavorite/:parking_id', function(req, res){
+
+        Parking.findById(req.params.parking_id, function(err, parking){
             if(err) return res.status(500).json({ error: 'database failure' });
-            if(!book) return res.status(404).json({ error: 'book not found' });
-    
-            if(req.body.title) book.title = req.body.title;
-            if(req.body.author) book.author = req.body.author;
-            if(req.body.published_date) book.published_date = req.body.published_date;
-    
-            book.save(function(err){
+            if(!parking) return res.status(404).json({ error: 'parking not found' });
+
+            if (parking.is_favorite == true) {
+                parking.is_favorite = false;
+            } else {
+                parking.is_favorite = true;
+            }
+
+            parking.save(function(err){
                 if(err) res.status(500).json({error: 'failed to update'});
-                res.json({message: 'book updated'});
+                res.json({message: 'parking favorite changed'});
             });
     
         });
     });
-    */
+    
 
     // ------------------------------------------------------
 
