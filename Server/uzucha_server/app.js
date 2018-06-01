@@ -42,7 +42,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // [CONFIGURE ROUTER]
-var router = require('./routes')(app, Parking, db);
+var router = require('./routes')(app, Parking, db, serializer);
 
 // [RUN SERVER]
 var server = app.listen(port, function(){
