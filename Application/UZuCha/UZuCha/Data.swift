@@ -38,7 +38,7 @@ class Park{
 }
 class BuildingStr{
     let name : String
-    let image_dir : [String]
+    var image_dir : [String]
     let address: String
     init(_ name : String,_ image : [String],_ address : String){
         self.name = name
@@ -142,7 +142,16 @@ func createPark(completion: @escaping ([Park]) -> ()) {
             retPark.append(park);
         }
         
-        print(retPark[0].building.image_dir)
+        // image_dir 앞에 주소 붙이기
+        let totalCount = retPark.count
+        let server_path:String = "http://52.78.114.28:8091/"
+        for index in 0...totalCount-1 {
+            let img_dir_count = retPark[index].building.image_dir.count
+            for jndex in 0...img_dir_count-1 {
+                retPark[index].building.image_dir[jndex] = "\(server_path)\(retPark[index].building.image_dir[jndex])"
+            }
+        }
+        
         completion(retPark)
     }
 }

@@ -29,7 +29,7 @@ class FavoriteTableViewController: UITableViewController {
         
         createPark() { (results:[Park]) in
             self.favorParks = results.filter({$0.is_favorite == true})
-            
+
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -77,7 +77,10 @@ class FavoriteTableViewController: UITableViewController {
         cell.addressView?.text = favoritePark.building.address
         cell.detailsView?.text = detailsString
         cell.commentView?.text = favoritePark.owner_comment
-        cell.parkImageView?.image = UIImage(named: favoritePark.building.image_dir[0])
+        
+        let url = URL(string: favoritePark.building.image_dir[0])
+        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        cell.parkImageView?.image = UIImage(data: data!)
         
         return cell
     }
