@@ -12,7 +12,9 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     
     @IBOutlet weak var imageCollection: UICollectionView!
     var selectedPark : Park?
-    var imageArray = [UIImage(named : "img_building1"),UIImage(named : "img_building2"),UIImage(named : "img_building3")]
+   // var imageArray = [UIImage(named : "img_building1"),UIImage(named : "img_building2"),UIImage(named : "img_building3")]
+    var imageArray : [URL] = []
+    
     
     @IBOutlet weak var feeView: UILabel!
     @IBOutlet weak var detailsCapacityView: UILabel!
@@ -86,13 +88,24 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let num : Int = selectedPark?.building.image_dir.count {
+            for i in 0..<num {
+                if let string : String = selectedPark?.building.image_dir[i]{
+                    // let url = URL(string: string)
+                    imageArray.append( URL(string : string)!)
+                }
+            }
+        }
         return imageArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ParkImageCollectionViewCell", for: indexPath) as! ParkImageCollectionViewCell
-        print("hello")
-        cell.parkImage.image = imageArray[indexPath.row]
+       
+      //  print(imageArray[indexPath.row])
+        let selectedUrl = imageArray[indexPath.row]
+        let data = try? Data(contentsOf: selectedUrl) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        cell.parkImage.image = UIImage(data: data!)
         return cell
     }
 
