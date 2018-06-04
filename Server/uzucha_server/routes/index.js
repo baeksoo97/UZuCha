@@ -131,7 +131,7 @@ module.exports = function(app, Parking, db, serializer)
     // GET json lists with matching building_name
     // which contains building_name string
     // GET by building name
-    app.get('/api/parkings/buildin_name/:building_name', function(req, res){
+    app.get('/api/parkings/building_name/:building_name', function(req, res){
 
         Parking.find({'building.building_name': {$regex : req.params.building_name}}, function(err, parking){
             if(err) return res.status(500).json({error: err});
