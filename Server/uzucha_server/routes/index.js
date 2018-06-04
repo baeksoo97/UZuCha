@@ -116,6 +116,43 @@ module.exports = function(app, Parking, db, serializer)
     });
 
 
+    // GET json lists with matching price
+    // which contains parking_price string
+    // GET by price
+    app.get('/api/parkings/price/:parking_price', function(req, res){
+
+        Parking.find({price: {$regex : req.params.parking_price}}, function(err, parking){
+            if(err) return res.status(500).json({error: err});
+            if(!parking) return res.status(404).json({error: 'parkings not found'});
+            res.json(parking);
+        })
+    });
+
+    // GET json lists with matching building_name
+    // which contains building_name string
+    // GET by building name
+    app.get('/api/parkings/buildin_name/:building_name', function(req, res){
+
+        Parking.find({'building.building_name': {$regex : req.params.building_name}}, function(err, parking){
+            if(err) return res.status(500).json({error: err});
+            if(!parking) return res.status(404).json({error: 'parkings not found'});
+            res.json(parking);
+        })
+    });
+
+    // GET json lists with matching building_address
+    // which contains building_address string
+    // GET by building address
+    app.get('/api/parkings/building_address/:building_address', function(req, res){
+
+        Parking.find({'building.building_address': {$regex : req.params.building_address}}, function(err, parking){
+            if(err) return res.status(500).json({error: err});
+            if(!parking) return res.status(404).json({error: 'parkings not found'});
+            res.json(parking);
+        })
+    });
+
+
 
 
     // CREATE PARKING
