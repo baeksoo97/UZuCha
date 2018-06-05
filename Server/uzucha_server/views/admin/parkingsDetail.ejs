@@ -14,6 +14,12 @@
                     <%=parking.getDate.seconds%>]
             </div>
 
+            <% if(parking.building.building_image_dir){%>
+                <% for (var i=0; i<parking.building.building_image_dir.length; i++) {%>
+                <img src="/<%=parking.building.building_image_dir[i]%>" style="max-height: 300px"/>
+                <% } %>
+            <% } %>
+
             <div style="padding: 10px">
             <table class="table table-bordered">
                     <tr>
@@ -81,5 +87,5 @@
     
  
     <a href="/admin/parkings" class="btn btn-default">목록으로</a>
-    <a href="/admin/parkings/edit/<%=parking.id%>" class="btn btn-primary">수정</a>
+    <a href="/admin/parkings/edit/<%=parking._id%>" class="btn btn-primary">수정</a>
 <% include ../includes/footer.ejs %>

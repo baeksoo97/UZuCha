@@ -21,7 +21,7 @@
                 <%=parking.getDate.seconds%>]
             </td>
             <td>
-                <a href="#" class="btn btn-danger">삭제</a>
+                <a href="/admin/parkings/delete/<%=parking._id%>" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
             </td>
         </tr>
         <% }); %>
