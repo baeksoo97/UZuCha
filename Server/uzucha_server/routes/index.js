@@ -1,9 +1,145 @@
 // routes/index.js
 
-module.exports = function(app, Parking, db, serializer)
+module.exports = function(app, Parking, db, serializer, upload)
 {
-    app.get('/', function (req, res) {
-        res.send('<html><body><h1>Server is On!</h1></body></html>');
+
+
+    // Upload Page
+    app.get('/upload',function(req,res){
+        res.render('upload.html');
+    });
+
+    // home page
+    app.get('/', function(req,res) {
+        res.render('home.ejs');
+    });
+
+    // parkings list pages
+    app.get('/admin/parkings', function(req,res) {
+        Parking.find(function(err, parkings){
+            res.render('admin/parkings',
+                { parkings : parkings }
+            );
+        });
+    });
+
+    // single parking list
+    app.get('/admin/parkings/detail/:id' , function(req, res){
+        //url 에서 변수 값을 받아올떈 req.params.id 로 받아온다
+        Parking.findOne( { '_id' :  req.params.id } , function(err ,parking){
+            res.render('admin/parkingsDetail', { parking: parking });  
+        });
+    });
+
+    // parking write pages
+    app.get('/admin/parkings/write', function(req,res){
+        res.render( 'admin/form');
+    });
+
+    // write 글쓰기로 등록
+    // USE POST METHOD
+    app.post('/admin/parkings/write', function(req, res) {
+        var reqBody = req.body;
+
+        // get json data from request
+        var parking = new Parking({
+            google_mark: {
+                longitude: reqBody.longitude,
+                latitude: reqBody.latitude
+            },
+
+            building: {
+                building_name: reqBody.building_name,
+                building_image_dir: reqBody.building_image_dir, 
+                building_address: reqBody.building_address
+            },
+
+            owner : {
+                owner_name: reqBody.owner_name,
+                owner_mail_address: reqBody.owner_mail_address,
+                owner_phone_number: reqBody.owner_phone_number
+            },
+
+            detail : {
+                capacity: reqBody.capacity,
+                floor: reqBody.floor,
+                available_time: reqBody.available_time
+            },
+
+            price: reqBody.price,
+            owner_comment: reqBody.owner_comment,
+        });
+
+        // save data in DB
+        parking.save(function(err, parking) {
+            if(err) {
+                console.error(err);
+                res.json({result : 0});
+                return;
+            }
+            // return to original page
+            res.redirect('/admin/parkings')
+        });
+        
+    
+    });
+
+    // upload request 
+    app.post('/upload', upload.single('userPic'), function(req, res){
+        res.render('upload.html');
+        console.log(req.file);
+        /*
+        var reqBody = req.body;
+
+        // get json data from request
+        var parking = new Parking({
+            google_mark: {
+                longitude: reqBody.google_mark.longitude,
+                latitude: reqBody.google_mark.latitude
+            },
+
+            building: {
+                building_name: reqBody.building.building_name,
+                building_image_dir: reqBody.building.building_image_dir, 
+                building_address: reqBody.building.building_address
+            },
+
+            owner : {
+                owner_name: reqBody.owner.owner_name,
+                owner_mail_address: reqBody.owner.owner_mail_address,
+                owner_phone_number: reqBody.owner.owner_phone_number
+            },
+
+            detail : {
+                capacity: reqBody.detail.capacity,
+                floor: reqBody.detail.floor,
+                available_time: reqBody.detail.available_time
+            },
+
+            is_favorite: reqBody.is_favorite,
+            price: reqBody.price,
+            owner_comment: reqBody.owner_comment,
+        });
+
+        // save data in DB
+        parking.save(function(err, parking) {
+            if(err) {
+                console.error(err);
+                res.json({result : 0});
+                return;
+            }
+            // return ID of element in response
+            res.json({result : 1, id : parking._id});
+            res.status(200).end();
+        });
+        */
+      });
+
+      
+
+      // 기본 data inputSet 입력
+    app.get('/basic', function (req, res) {
+        res.send('<html><body><h1>basic Data initialize</h1></body></html>');
 
         // DB initialization
         Parking.find(function(err, parkings) {
@@ -71,15 +207,10 @@ module.exports = function(app, Parking, db, serializer)
         });
     });
 
-    app.get('/hello', function(req,res){
-        var json_content = {
-            message: "Hello world"
-        };
-        res.json(json_content);
-    });
 
-
-
+    //-------------------------------------------------------
+    // -------------------REST API REQUESTS------------------
+    //-------------------------------------------------------
     // GET ALL PARKINGS
     app.get('/api/parkings', function(req,res){
         Parking.find(function(err, parkings){

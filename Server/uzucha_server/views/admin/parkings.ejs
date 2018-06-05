@@ -1,0 +1,32 @@
+<% include ../includes/header.ejs %>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>건물 이름</th>
+            <th>등록자명</th>
+            <th>등록 시간</th>
+            <th>삭제</th>
+        </tr>
+        <%parkings.forEach(function(parking){%>
+        <tr>
+            <td>
+                <a href="/admin/parkings/detail/<%=parking._id%>"><%=parking.building.building_name%></a>
+            </td>
+            <td><%=parking.owner.owner_name%></td>
+            <td>
+                <%=parking.getDate.year%>.
+                <%=parking.getDate.month%>.
+                <%=parking.getDate.day%>
+                [<%=parking.getDate.hours%> :
+                <%=parking.getDate.minutes%> : 
+                <%=parking.getDate.seconds%>]
+            </td>
+            <td>
+                <a href="#" class="btn btn-danger">삭제</a>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+ 
+    <a href="/admin/parkings/write" class="btn btn-default">작성하기</a>
+ 
+<% include ../includes/footer.ejs %>
