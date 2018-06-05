@@ -78,9 +78,11 @@ class FavoriteTableViewController: UITableViewController {
         cell.detailsView?.text = detailsString
         cell.commentView?.text = favoritePark.owner_comment
         
-        let url = URL(string: favoritePark.building.image_dir[0])
-        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-        cell.parkImageView?.image = UIImage(data: data!)
+        if (favoritePark.building.image_dir.count > 0) {
+            let url = URL(string: favoritePark.building.image_dir[0])
+            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            cell.parkImageView?.image = UIImage(data: data!)
+        }
         
         return cell
     }

@@ -1,0 +1,103 @@
+<% include ../includes/header.ejs %>
+    <form action="" method="post" enctype="multipart/form-data">
+        <table class="table table-bordered">
+            <tr>
+                <th>건물 사진</th>
+                <td>
+                    <input type="file" name="parking_images" multiple/>
+                </td>
+            </tr>
+            <tr>
+                <th>* longitude</th>
+                <td><input type="text" name="longitude" class="form-control"
+                    <% if (parking.google_mark) { %>
+                        value="<%=parking.google_mark.longitude%>"/></td>
+                    <% } %>
+            </tr>
+            <tr>
+                <th>* latitude</th>
+                <td><input type="text" name="latitude" class="form-control"
+                    <% if (parking.google_mark) { %>
+                    value="<%=parking.google_mark.latitude%>"/></td>
+                    <% } %>
+            </tr>
+            <tr>
+        </table>
+        <table class="table table-bordered">
+            <tr>
+            <th>* 건물 이름</th>
+                <td><input type="text" name="building_name" class="form-control"
+                    <% if (parking.building) { %>
+                    value="<%=parking.building.building_name%>"/></td>
+                    <% } %>
+            </tr>
+            <tr>
+                <th>* 주소</th>
+                <td><input type="text" name="building_address" class="form-control"
+                    <% if (parking.building) { %>
+                    value="<%=parking.building.building_address%>"/></td>
+                    <% } %>
+            </tr>
+        </table>
+        <table class="table table-bordered">
+                <tr>
+                <th>* 사업주 이름 </th>
+                    <td><input type="text" name="owner_name" class="form-control"
+                        <% if (parking.owner) { %>
+                        value="<%=parking.owner.owner_name%>"/></td>
+                        <% } %>
+                </tr>
+                <tr>
+                    <th>이메일 주소</th>
+                    <td><input type="text" name="owner_mail_address" class="form-control"
+                        <% if (parking.owner) { %>
+                        value="<%=parking.owner.owner_mail_address%>"/></td>
+                        <% } %>
+                </tr>
+                <tr>
+                    <th>전화번호</th>
+                    <td><input type="text" name="owner_phone_number" class="form-control"
+                        <% if (parking.owner) { %>
+                        value="<%=parking.owner.owner_phone_number%>"/></td>
+                        <% } %>
+                </tr>
+            </table>
+        <table class="table table-bordered">
+                <tr>
+                <th>총 수용 가능한 차량 수</th>
+                    <td><input type="text" name="capacity" class="form-control"
+                        <% if (parking.detail) { %>
+                        value="<%=parking.detail.capacity%>"/></td>
+                        <% } %>
+                </tr>
+                <tr>
+                    <th>건물 층</th>
+                    <td><input type="text" name="floor" class="form-control"
+                        <% if (parking.detail) { %>
+                        value="<%=parking.detail.floor%>"/></td>
+                        <% } %>
+                </tr>
+                <tr>
+                    <th>주차 가능한 시간</th>
+                    <td><input type="text" name="available_time" class="form-control"
+                        <% if (parking.detail) { %>
+                        value="<%=parking.detail.available_time%>"/></td>
+                        <% } %>
+                </tr>
+
+
+                <tr>
+                    <th>주차 가격</th>
+                    <td><input type="text" name="price" class="form-control"
+                        value="<%=parking.price%>"/></td>
+                </tr>
+                <tr height="200px">
+                    <th>상세설명</th>
+                    <td><input type="text"style="height:200px" name="owner_comment" class="form-control"
+                        value="<%=parking.owner_comment%>"/></td>
+                </tr>
+        </table>
+        <button class="btn btn-primary">작성하기</button>
+        <a href="/admin/parkings" class="btn btn-default">목록으로</a>
+    </form>
+<% include ../includes/footer.ejs %>

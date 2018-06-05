@@ -1,9 +1,202 @@
 // routes/index.js
 
-module.exports = function(app, Parking, db, serializer)
+var fs = require('fs');
+
+module.exports = function(app, Parking, db, serializer, upload)
 {
-    app.get('/', function (req, res) {
-        res.send('<html><body><h1>Server is On!</h1></body></html>');
+
+
+    // File Upload Page
+    app.get('/upload',function(req,res){
+        res.render('upload.html');
+    });
+
+    // home page
+    app.get('/', function(req,res) {
+        res.render('home.ejs');
+    });
+
+    // parkings list pages
+    app.get('/admin/parkings', function(req,res) {
+        Parking.find(function(err, parkings){
+            res.render('admin/parkings',
+                { parkings : parkings }
+            );
+        });
+    });
+
+    // single parking list
+    app.get('/admin/parkings/detail/:_id' , function(req, res){
+        //url 에서 변수 값을 받아올떈 req.params.id 로 받아온다
+        Parking.findOne( { '_id' :  req.params._id } , function(err ,parking){
+            if(err) return res.status(500).json({error: err});
+            if(!parking) return res.status(404).json({error: 'parking not found'});
+            res.render('admin/parkingsDetail', { parking: parking });  
+        });
+    });
+
+    // parking write pages
+    app.get('/admin/parkings/write', function(req,res){
+        res.render( 'admin/form', { parking : "" });
+    });
+
+    // parking editing pages
+    app.get('/admin/parkings/edit/:_id' ,function(req, res){
+        Parking.findOne({ '_id' : req.params._id } , function(err, parking){
+            if(err) return res.status(500).json({error: err});
+            if(!parking) return res.status(404).json({error: 'parking not found'});
+            res.render('admin/form', { parking : parking });
+        });
+    });
+
+    // parking delete pages
+    app.get('/admin/parkings/delete/:_id', function(req, res){
+
+        // 먼저 DB에 링크된 파일을 삭제
+        Parking.findOne( {_id : req.params._id}, function(err, parking) {
+            if(err) return res.status(500).json({error: err});
+            if(!parking) return res.status(404).json({error: 'parking not found'});
+
+            if(parking.building.building_image_dir.length != 0){  //요청중에 파일이 존재 할시 이전이미지 지운다.
+                for (var i=0; i<parking.building.building_image_dir.length; i++) {
+                    if (fs.existsSync('./public/' + parking.building.building_image_dir[i])) {
+                        fs.unlinkSync( './public/' + parking.building.building_image_dir[i]);
+                    }
+                }
+            }
+
+            Parking.remove({ _id : req.params._id }, function(err){
+                res.redirect('/admin/parkings');
+            });
+        });
+        
+    });
+
+    // USE POST METHOD
+    // Write information into JSON
+    app.post('/admin/parkings/write', upload.array('parking_images', 10), function(req, res) {
+        var reqBody = req.body;
+
+        // add directory "images/" for all imageFileName
+        // make fileName arrays to insert DB
+        var fileNames = new Array();
+
+        for (i=0; i<req.files.length; i++) {
+            req.files[i].filename = "images/" + req.files[i].filename;
+            fileNames.push(req.files[i].filename);
+        }
+
+        // get json data from request
+        var parking = new Parking({
+            google_mark: {
+                longitude: reqBody.longitude,
+                latitude: reqBody.latitude
+            },
+
+            building: {
+                building_name: reqBody.building_name,
+                building_image_dir: (req.files) ? fileNames : [], 
+                building_address: reqBody.building_address
+            },
+
+            owner : {
+                owner_name: reqBody.owner_name,
+                owner_mail_address: reqBody.owner_mail_address,
+                owner_phone_number: reqBody.owner_phone_number
+            },
+
+            detail : {
+                capacity: reqBody.capacity,
+                floor: reqBody.floor,
+                available_time: reqBody.available_time
+            },
+
+            price: reqBody.price,
+            owner_comment: reqBody.owner_comment,
+        });
+
+        // save data in DB
+        parking.save(function(err, parking) {
+            if(err) {
+                console.error(err);
+                res.json({result : 0});
+                return;
+            }
+            // return to original page
+            res.redirect('/admin/parkings')
+        });
+        
+    
+    });
+
+    // edit parking POST request
+    app.post('/admin/parkings/edit/:_id', upload.array('parking_images', 10), function(req, res){
+        var reqBody = req.body;
+
+        // add directory "images/" for all imageFileName
+        // make fileName arrays to insert DB
+        var fileNames = new Array();
+
+        for (i=0; i<req.files.length; i++) {
+            req.files[i].filename = "images/" + req.files[i].filename;
+            fileNames.push(req.files[i].filename);
+        }
+
+        Parking.findOne( {'_id' : req.params._id}, function(err, parking) {
+
+            if(err) return res.status(500).json({error: err});
+            if(!parking) return res.status(404).json({error: 'parking not found'});
+
+            // 수정시 기존 존재하는 파일 삭제
+            if(req.files && parking.building.building_image_dir.length != 0){  //요청중에 파일이 존재 할시 이전이미지 지운다.
+                for (var i=0; i<parking.building.building_image_dir.length; i++) {
+                    if (fs.existsSync('./public/' + parking.building.building_image_dir[i])) {
+                        fs.unlinkSync( './public/' + parking.building.building_image_dir[i]);
+                    }
+                }
+            }
+
+            //넣을 변수 값을 셋팅한다
+            var query = {
+                google_mark: {
+                    longitude: reqBody.longitude,
+                    latitude: reqBody.latitude
+                },
+
+                building: {
+                    building_name: reqBody.building_name,
+                    building_image_dir: (req.files) ? fileNames : parking.building.building_image_dir,
+                    building_address: reqBody.building_address
+                },
+
+                owner : {
+                    owner_name: reqBody.owner_name,
+                    owner_mail_address: reqBody.owner_mail_address,
+                    owner_phone_number: reqBody.owner_phone_number
+                },
+
+                detail : {
+                    capacity: reqBody.capacity,
+                    floor: reqBody.floor,
+                    available_time: reqBody.available_time
+                },
+
+                price: reqBody.price,
+                owner_comment: reqBody.owner_comment,
+            };
+        
+            //update의 첫번째 인자는 조건, 두번째 인자는 바뀔 값들
+            Parking.update({ _id : req.params._id }, { $set : query }, function(err){
+                res.redirect('/admin/parkings/detail/' + req.params._id ); //수정후 본래보던 상세페이지로 이동
+            });
+
+        });
+
+    });
+      
+      // 기본 data inputSet 입력
+    app.get('/basic', function (req, res) {
+        res.send('<html><body><h1>basic Data initialize</h1></body></html>');
 
         // DB initialization
         Parking.find(function(err, parkings) {
@@ -71,13 +264,12 @@ module.exports = function(app, Parking, db, serializer)
         });
     });
 
-    app.get('/hello', function(req,res){
-        var json_content = {
-            message: "Hello world"
-        };
-        res.json(json_content);
-    });
 
+    //-------------------------------------------------------
+    //-------------------------------------------------------
+    // -------------------REST API REQUESTS------------------
+    //-------------------------------------------------------
+    //-------------------------------------------------------
 
 
     // GET ALL PARKINGS

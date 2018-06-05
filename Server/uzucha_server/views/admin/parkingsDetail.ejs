@@ -1,0 +1,91 @@
+<% include ../includes/header.ejs %>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <%=parking.building.building_name%>
+        </div>
+        <div class="panel-body">
+            <div style="padding-bottom: 10px">
+                작성일 : 
+                    <%=parking.getDate.year%>.
+                    <%=parking.getDate.month%>.
+                    <%=parking.getDate.day%>
+                    [<%=parking.getDate.hours%> :
+                    <%=parking.getDate.minutes%> : 
+                    <%=parking.getDate.seconds%>]
+            </div>
+
+            <% if(parking.building.building_image_dir){%>
+                <% for (var i=0; i<parking.building.building_image_dir.length; i++) {%>
+                <img src="/<%=parking.building.building_image_dir[i]%>" style="max-height: 300px"/>
+                <% } %>
+            <% } %>
+
+            <div style="padding: 10px">
+            <table class="table table-bordered">
+                    <tr>
+                        <th>longitude</th>
+                        <td><%=parking.google_mark.longitude%></td>
+                    </tr>
+                    <tr>
+                        <th>latitude</th>
+                        <td><%=parking.google_mark.latitude%></td>
+                    </tr>
+                    <tr>
+                </table>
+                <table class="table table-bordered">
+                    <tr>
+                    <th>건물 이름</th>
+                        <td><%=parking.building.building_name%></td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td><%=parking.building.building_address%></td>
+                    </tr>
+                </table>
+                <table class="table table-bordered">
+                        <tr>
+                        <th>사업주 이름 </th>
+                        <td><%=parking.owner.owner_name%></td>
+                        </tr>
+                        <tr>
+                            <th>이메일 주소</th>
+                            <td><%=parking.owner.owner_mail_address%></td>
+                        </tr>
+                        <tr>
+                            <th>전화번호</th>
+                            <td><%=parking.owner.owner_phone_number%></td>
+                        </tr>
+                    </table>
+                <table class="table table-bordered">
+                        <tr>
+                        <th>총 수용 가능한 차량 수</th>
+                        <td><%=parking.detail.capacity%></td>
+                        </tr>
+                        <tr>
+                            <th>건물 층</th>
+                            <td><%=parking.detail.floor%></td>
+                        </tr>
+                        <tr>
+                            <th>주차 가능한 시간</th>
+                            <td><%=parking.detail.available_time%></td>
+                        </tr>
+        
+        
+                        <tr>
+                            <th>주차 가격</th>
+                            <td><%=parking.price%></td>
+                        </tr>
+                        <tr height="200px">
+                            <th>상세설명</th>
+                            <td><%=parking.owner_comment%></td>
+                        </tr>
+                </table>
+                </div>
+        </div>
+    </div>
+
+    
+ 
+    <a href="/admin/parkings" class="btn btn-default">목록으로</a>
+    <a href="/admin/parkings/edit/<%=parking._id%>" class="btn btn-primary">수정</a>
+<% include ../includes/footer.ejs %>

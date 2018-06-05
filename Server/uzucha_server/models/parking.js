@@ -1,6 +1,7 @@
 // models/parking.js
 
 var mongoose = require('mongoose');
+
 var Schema = mongoose.Schema;
 
 var ParkingSchema = new Schema({
@@ -36,5 +37,19 @@ var ParkingSchema = new Schema({
 
     created_at: { type: Date, default: Date.now }
 });
+
+// virtual getter for getting date in format
+ParkingSchema.virtual('getDate').get(function(){
+    var date = new Date(this.created_at);
+    return {
+        year : date.getFullYear(),
+        month : date.getMonth()+1,
+        day : date.getDate(),
+        hours : date.getHours(),
+        minutes : date.getMinutes(),
+        seconds : date.getSeconds()
+    };
+});
+
 
 module.exports = mongoose.model('parking', ParkingSchema);

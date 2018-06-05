@@ -145,11 +145,16 @@ func createPark(completion: @escaping ([Park]) -> ()) {
         // image_dir 앞에 주소 붙이기
         let totalCount = retPark.count
         let server_path:String = "http://52.78.114.28:8091/"
+        
         for index in 0...totalCount-1 {
             let img_dir_count = retPark[index].building.image_dir.count
-            for jndex in 0...img_dir_count-1 {
-                retPark[index].building.image_dir[jndex] = "\(server_path)\(retPark[index].building.image_dir[jndex])"
+            if (img_dir_count>0) {
+                for jndex in 0...img_dir_count-1 {
+                    retPark[index].building.image_dir[jndex] = "\(server_path)\(retPark[index].building.image_dir[jndex])"
+                }
+                
             }
+            
         }
         
         completion(retPark)
