@@ -20,6 +20,40 @@
                 <% } %>
             <% } %>
 
+            <!-- google map -->    
+            <div id="map"></div>
+            <script>
+
+                // get data from parking
+                function htmlDecode(input){
+                    var e = document.createElement('div');
+                    e.innerHTML = input;
+                    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+                }
+                //var myLat = JSON.parse(htmlDecode("<%= JSON.stringify(parking.google_mark.longitude) %>"));
+                //var myLong = JSON.parse(htmlDecode("<%= JSON.stringify(parking.google_mark.latitude) %>"));
+
+                var myLat = <%=parking.google_mark.longitude%>;
+                var myLong = <%=parking.google_mark.latitude%>;
+                
+                var map;
+                function initMap() {
+                    var uluru = {lat: myLat, lng: myLong};
+                    map = new google.maps.Map(document.getElementById('map'), {
+                    center: uluru,
+                    zoom: 18
+                    });
+
+                    var parkMarker = new google.maps.Marker({
+                        animation: google.maps.Animation.DROP,
+                        position: uluru,
+                        map: map
+                    });
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgJR3yfILoznFmzKEkl1L2TIeHzuZI59Q&callback=initMap"
+    async defer></script>
+
             <div style="padding: 10px">
             <table class="table table-bordered">
                     <tr>
