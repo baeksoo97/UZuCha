@@ -1,4 +1,117 @@
 <% include ../includes/header.ejs %>
+
+<!-- google map -->
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">    
+<div id="map"></div>
+<script>
+    var myLong = 127.047754;
+    var myLat = 37.561059;
+    var loaded = false;
+
+    var newInputLong;
+    var newInputLat;
+
+
+    // get data from parking
+    <% if (parking.google_mark) { %>
+        myLat = <%=parking.google_mark.longitude%>;
+        myLong = <%=parking.google_mark.latitude%>;
+        newInputLong = myLong;
+        newInputlat = myLat;
+        loaded = true;
+    <% } %>
+    
+    
+    function initMap() {
+        var markers = [];
+        var uluru = {lat: myLat, lng: myLong};
+        var map = new google.maps.Map(document.getElementById('map'), {
+        center: uluru,
+        zoom: 18,
+        mapTypeId: 'roadmap'
+        });
+
+        if (loaded) {
+                markers.push(new google.maps.Marker({
+                animation: google.maps.Animation.DROP,
+                position: uluru,
+                map: map
+            }));
+            
+        }
+
+
+
+        // click to load new markers
+        map.addListener("click", function (e) {
+
+            // Clear out the old markers.
+            markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+
+            //lat and lng is available in e object
+            var clickedlatLng = e.latLng;
+                markers.push(new google.maps.Marker({
+                animation: google.maps.Animation.DROP,
+                position: clickedlatLng,
+                map: map
+            }));
+            newInputLong = e.latLng.lng();
+            newInputLat = e.latLng.lat();
+            console.log(newInputLat);
+            console.log(newInputLong);
+            document.getElementById("lat").value = newInputLat;
+            document.getElementById("lng").value = newInputLong;
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        console.log(input);
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        console.log(searchBox);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+            });
+
+            map.fitBounds(bounds);
+        });
+        
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgJR3yfILoznFmzKEkl1L2TIeHzuZI59Q&libraries=places&callback=initMap"
+async defer></script>
+
+
     <form action="" method="post" enctype="multipart/form-data">
         <table class="table table-bordered">
             <tr>
@@ -9,20 +122,25 @@
             </tr>
             <tr>
                 <th>* longitude</th>
-                <td><input type="text" name="longitude" class="form-control"
+                <td><input type="text" id = "lat" name="longitude" class="form-control"
                     <% if (parking.google_mark) { %>
                         value="<%=parking.google_mark.longitude%>"/></td>
                     <% } %>
             </tr>
             <tr>
                 <th>* latitude</th>
-                <td><input type="text" name="latitude" class="form-control"
+                <td><input type="text" id = "lng" name="latitude" class="form-control"
                     <% if (parking.google_mark) { %>
                     value="<%=parking.google_mark.latitude%>"/></td>
                     <% } %>
             </tr>
             <tr>
         </table>
+
+        
+        
+        
+
         <table class="table table-bordered">
             <tr>
             <th>* 건물 이름</th>
