@@ -60,8 +60,7 @@
             }));
             newInputLong = e.latLng.lng();
             newInputLat = e.latLng.lat();
-            console.log(newInputLat);
-            console.log(newInputLong);
+
             document.getElementById("lat").value = newInputLat;
             document.getElementById("lng").value = newInputLong;
         });
@@ -81,19 +80,47 @@
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
         searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
 
-          if (places.length == 0) {
-            return;
-          }
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
 
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
+            
             if (!place.geometry) {
               console.log("Returned place contains no geometry");
               return;
             }
+
+
+            // 주소 설정
+            console.log(place.formatted_address);
+            console.log(place.name);
+            document.getElementById("building_name").value = place.name;
+            document.getElementById("building_address").value = place.formatted_address;
+
+            // 마커 설정
+            // Clear out the old markers.
+            markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+
+            //lat and lng is available in e object
+            var clickedlatLng = place.geometry.location;
+                markers.push(new google.maps.Marker({
+                    animation: google.maps.Animation.DROP,
+                    position: clickedlatLng,
+                    map: map
+                }));
+            newInputLong = place.geometry.location.lng();
+            newInputLat = place.geometry.location.lat();
+            document.getElementById("lat").value = newInputLat;
+            document.getElementById("lng").value = newInputLong;
 
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
@@ -101,7 +128,10 @@
             } else {
               bounds.extend(place.geometry.location);
             }
+                
             });
+
+            
 
             map.fitBounds(bounds);
         });
@@ -144,14 +174,14 @@ async defer></script>
         <table class="table table-bordered">
             <tr>
             <th>* 건물 이름</th>
-                <td><input type="text" name="building_name" class="form-control"
+                <td><input type="text" id="building_name" name="building_name" class="form-control"
                     <% if (parking.building) { %>
                     value="<%=parking.building.building_name%>"/></td>
                     <% } %>
             </tr>
             <tr>
                 <th>* 주소</th>
-                <td><input type="text" name="building_address" class="form-control"
+                <td><input type="text" id="building_address" name="building_address" class="form-control"
                     <% if (parking.building) { %>
                     value="<%=parking.building.building_address%>"/></td>
                     <% } %>
