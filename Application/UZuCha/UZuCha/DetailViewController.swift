@@ -101,11 +101,11 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ParkImageCollectionViewCell", for: indexPath) as! ParkImageCollectionViewCell
-       
-      //  print(imageArray[indexPath.row])
+    
         let selectedUrl = imageArray[indexPath.row]
-        let data = try? Data(contentsOf: selectedUrl) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-        cell.parkImage.image = UIImage(data: data!)
+        if let data = try? Data(contentsOf: selectedUrl) {//make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            cell.parkImage.image = UIImage(data: data)
+        }
         return cell
     }
 

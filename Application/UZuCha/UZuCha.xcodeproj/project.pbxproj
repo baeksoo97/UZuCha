@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4819415320C919ED00FBCEFA /* CurrentParkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4819415220C919ED00FBCEFA /* CurrentParkCollectionViewCell.swift */; };
 		483BC12320BB09780035AA77 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483BC12220BB09780035AA77 /* DetailViewController.swift */; };
 		485DA20720B6AF3F00346C76 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485DA20620B6AF3F00346C76 /* FavoriteTableViewController.swift */; };
 		485DA20920B6B04700346C76 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485DA20820B6B04700346C76 /* Data.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		038647CA18877F400D7660BE /* libPods-UZuCha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UZuCha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FFAC13581E3EBA1236CC685 /* Pods-UZuCha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UZuCha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UZuCha/Pods-UZuCha.debug.xcconfig"; sourceTree = "<group>"; };
+		4819415220C919ED00FBCEFA /* CurrentParkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentParkCollectionViewCell.swift; sourceTree = "<group>"; };
 		483BC12220BB09780035AA77 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		485DA20620B6AF3F00346C76 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		485DA20820B6B04700346C76 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				C5F0053920A432FE00DE7B8D /* AppDelegate.swift */,
 				C5F0053D20A432FE00DE7B8D /* Main.storyboard */,
 				48FE1DC720BFF2E0001B4106 /* ParkImageCollectionViewCell.swift */,
+				4819415220C919ED00FBCEFA /* CurrentParkCollectionViewCell.swift */,
 				485DA20620B6AF3F00346C76 /* FavoriteTableViewController.swift */,
 				485DA20820B6B04700346C76 /* Data.swift */,
 				C5F0054020A432FF00DE7B8D /* Assets.xcassets */,
@@ -346,6 +349,7 @@
 				485DA20920B6B04700346C76 /* Data.swift in Sources */,
 				48DE4A6120C13840001459FB /* HomeViewController.swift in Sources */,
 				483BC12320BB09780035AA77 /* DetailViewController.swift in Sources */,
+				4819415320C919ED00FBCEFA /* CurrentParkCollectionViewCell.swift in Sources */,
 				48FE1DC820BFF2E0001B4106 /* ParkImageCollectionViewCell.swift in Sources */,
 				48FE1DC620BFEE51001B4106 /* JSONParking.swift in Sources */,
 				906FD5F120BAEF4800E583C2 /* MapViewController.swift in Sources */,
