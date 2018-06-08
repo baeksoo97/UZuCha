@@ -22,7 +22,9 @@ class Park{
     let details : DetailsStr
     
     let owner_comment : String
-    
+    //빈 파크만들기 for initialize
+
+
 //    let register_date : Date  //자료형 어째야 할지 모르겟음
     init(_ id: String, _ building:BuildingStr,_ owner : OwnerStr,_ Map_location:Map_locationStr,_ fee:String,_ is_favorite:Bool,_  details:DetailsStr,_ owner_comment:String){
         self.building = building
@@ -40,6 +42,7 @@ class BuildingStr{
     let name : String
     var image_dir : [String]
     let address: String
+
     init(_ name : String,_ image : [String],_ address : String){
         self.name = name
         self.image_dir = image
@@ -50,6 +53,7 @@ class OwnerStr{
     let name : String
     let phone_num : String
     let mail_addr : String
+
     init(_ name : String,_ phone_num : String,_ mail_addr : String){
         self.name = name
         self.phone_num = phone_num
@@ -60,6 +64,7 @@ class OwnerStr{
 class Map_locationStr{
     let latitude : Double
     let longitude : Double
+
     init(_ latitude : Double,_ longitude : Double){
         self.latitude = latitude
         self.longitude = longitude
@@ -69,6 +74,7 @@ class DetailsStr{
     let capacity : Int  //주차 공간 수
     let floor : Int  //지하는 '-'로 표현
     let available_time : String     //주차 가능 시간
+
     init(_ capacity : Int,_ floor : Int, _ available_time : String){
         self.capacity = capacity
         self.floor = floor

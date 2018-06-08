@@ -15,7 +15,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     var locationManager = CLLocationManager()
     
     var parks:[Park] = []
-
+    var selected_marker_id: String = String()
 
 
     @IBOutlet weak var mapView: GMSMapView!
@@ -27,6 +27,11 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        print("searchbuttonclicked")
+        
+        removCustomInfoWindow()
+        
         //ignoring user
         UIApplication.shared.beginIgnoringInteractionEvents()
         //activity indicator
@@ -64,7 +69,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
                 let camera = GMSCameraPosition.camera(withLatitude: latitude_!, longitude: longtitude_!, zoom: 15.0)
                 self.mapView?.animate(to: camera)
                 self.getMarker()
-                self.view = self.mapView
+                //self.view = self.mapView
             }
             
         }
@@ -84,10 +89,11 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
         initGoogleMaps()
     }
 
+    @IBOutlet var info_button: UIButton!
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        mapView?.delegate = self
+        //mapView?.delegate = self
         
         locationManager.delegate = self
         
@@ -102,7 +108,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
         self.mapView?.camera = camera
         self.mapView?.delegate = self
         self.mapView?.isMyLocationEnabled = true
-        self.view = mapView
+        self.view.addSubview(mapView)
 
     }
     
@@ -115,7 +121,6 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
             DispatchQueue.main.async {
                 self.setupMarker()
             }
-   
         }
     }
     
@@ -133,18 +138,138 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
             parking_lot?.position = CLLocationCoordinate2DMake(parks[i].Map_location.longitude, parks[i].Map_location.latitude)
             parking_lot?.title = parks[i].building.name
             parking_lot?.snippet = parks[i].building.address
+            parking_lot?.userData = parks[i].id
+//            print(parking_lot?.userData)
             parking_lot?.icon = self.imageWithImage(image: UIImage(named: "marker_icon")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
 
             
 
             parking_lot?.map = self.mapView
-            self.view = mapView
-
         }
-
-        
-        self.view = mapView
     }
    
+    
+    @IBOutlet var info_id: UILabel!
+    @IBOutlet var infowindow: UIView!
+    
+    @IBOutlet var info_detail: UILabel!
+    @IBOutlet var info_comment: UILabel!
+    @IBOutlet var info_fee: UILabel!
+    @IBOutlet var info_img: UIImageView!
+    
+    
+    func removCustomInfoWindow(){
+        print("Start remove sibview")
+        if let viewWithTag = self.view.viewWithTag(100) {
+            viewWithTag.removeFromSuperview()
+        }else{
+            print("No!")
+        }
+        if let viewWithTag2 = self.view.viewWithTag(101){
+            viewWithTag2.removeFromSuperview()
+        }
+        if let viewWithTag3 = self.view.viewWithTag(102){
+            viewWithTag3.removeFromSuperview()
+        }
+        if let viewWithTag4 = self.view.viewWithTag(103){
+            viewWithTag4.removeFromSuperview()
+        }
+        if let viewWithTag5 = self.view.viewWithTag(104){
+            viewWithTag5.removeFromSuperview()
+        }
+        if let viewWithTag6 = self.view.viewWithTag(105){
+            viewWithTag6.removeFromSuperview()
+        }
+        if let viewWithTag7 = self.view.viewWithTag(106){
+            viewWithTag7.removeFromSuperview()
+        }
+        print("remove done")
+    }
+    
+    
+    func set_infowindow(marker:GMSMarker) {
+
+        infowindow = UIView(frame: CGRect.init(x: 0, y: 0, width: mapView.frame.size.width, height: 150))
+        infowindow.tag = 100
+        infowindow.backgroundColor = UIColor.white
+        infowindow.frame.origin.y = mapView.frame.size.height - 149
+        infowindow.layer.cornerRadius = 6
+        info_id.tag = 101
+        info_fee.tag = 102
+        info_img.tag = 103
+        info_button.tag = 104
+        info_detail.tag = 105
+        info_comment.tag = 106
+        
+        let park_id = marker.userData as! String
+
+        for park in parks{
+            if (park_id == park.id){
+                selected_marker_id = park.id
+                info_id.text = park_id
+                info_button.setTitle(park_id, for: .normal)
+                var detailsString = ""
+                detailsString += "\(park.details.capacity)" + "대 | "
+                if(park.details.floor < 0){
+                    detailsString += "지하" + "\(-park.details.floor)" + "층 | "
+                }
+                else{
+                    detailsString += "\(park.details.floor)" + "층 | "
+                }
+                detailsString += park.details.available_time
+                
+                info_comment.text = park.owner_comment
+                info_fee.text = park.fee
+                info_detail.text = detailsString
+                if (park.building.image_dir.count > 0) {
+                    let url = URL(string: park.building.image_dir[0])
+                    let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                    info_img.image = UIImage(data: data!)
+                }
+                break
+            }
+        }
+        
+        info_fee.font = UIFont.boldSystemFont(ofSize: 18.0)
+
+
+        infowindow.addSubview(info_fee)
+        infowindow.addSubview(info_detail)
+        infowindow.addSubview(info_comment)
+        infowindow.addSubview(info_img)
+        infowindow.addSubview(info_button)
+        
+        mapView.addSubview(infowindow)
+    }
+    
+
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        print("tap")
+        set_infowindow(marker: marker)
+        return false
+    }
+    
+    func mapView( _mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) -> Bool{
+        print("coord")
+        return false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "MapParkSegue"
+        {
+            if let destination = segue.destination as? DetailViewController
+            {
+                for park in parks{
+                    if(selected_marker_id == park.id){
+                        destination.selectedPark = park
+                    }
+                }
+            }
+        }
+        
+    }
 }
 
