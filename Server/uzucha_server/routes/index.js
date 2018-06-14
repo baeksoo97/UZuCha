@@ -111,6 +111,8 @@ module.exports = function(app, Parking, db, serializer, upload)
                 available_time: reqBody.available_time
             },
 
+            // make favorite true
+            is_favorite : true,
             price: reqBody.price,
             owner_comment: reqBody.owner_comment,
         });

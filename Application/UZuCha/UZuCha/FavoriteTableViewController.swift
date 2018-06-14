@@ -70,7 +70,6 @@ class FavoriteTableViewController: UITableViewController {
             detailsString += "\(favoritePark.details.floor)" + "층 | "
         }
         detailsString += favoritePark.details.available_time
-        print(favoritePark.details.available_time)
         
         cell.feeView?.text = favoritePark.fee
         cell.feeView?.font = UIFont.boldSystemFont(ofSize: 18.0)
@@ -80,8 +79,11 @@ class FavoriteTableViewController: UITableViewController {
         
         if (favoritePark.building.image_dir.count > 0) {
             let url = URL(string: favoritePark.building.image_dir[0])
-            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-            cell.parkImageView?.image = UIImage(data: data!)
+            if let data = try? Data(contentsOf: url!){ //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                cell.parkImageView?.image = UIImage(data: data)
+            }
+            cell.parkImageView.layer.cornerRadius = cell.parkImageView.frame.width/30
+            cell.parkImageView.clipsToBounds = true
         }
         
         return cell
