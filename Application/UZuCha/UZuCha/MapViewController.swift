@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 import GoogleMaps
 
-class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate,GMSMapViewDelegate{
+class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate,GMSMapViewDelegate,UIGestureRecognizerDelegate{
     var locationManager = CLLocationManager()
     
     var parks:[Park] = []
@@ -21,58 +21,59 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     @IBOutlet weak var mapView: GMSMapView!
     @IBAction func searchButton(_ sender: Any) {
         print("searchButton pressed")
+        removCustomInfoWindow()
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         present(searchController, animated: true, completion: nil)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         print("searchbuttonclicked")
+
         
-        removCustomInfoWindow()
+//        if removCustomInfoWindow(){
+
+            //ignoring user
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            //activity indicator
+            let activityIndicator = UIActivityIndicatorView()
+            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.startAnimating()
         
-        //ignoring user
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        //activity indicator
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
+            self.view.addSubview(activityIndicator)
         
-        self.view.addSubview(activityIndicator)
+            //Hide  search bar
+            searchBar.resignFirstResponder()
+            dismiss(animated: true, completion: nil)
         
-        //Hide  search bar
-        searchBar.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
+            //Create the search request
+            //지금 현재 MapKit을 이용하고 있는데 이거를 구글 지오코딩으로 해서 바꾸면 조금더 정확한 값을 얻을수있을듯
+            let searchRequest = MKLocalSearchRequest()
+            searchRequest.naturalLanguageQuery = searchBar.text
+            //print(searchBar.text)
         
-        //Create the search request
-        //지금 현재 MapKit을 이용하고 있는데 이거를 구글 지오코딩으로 해서 바꾸면 조금더 정확한 값을 얻을수있을듯
-        let searchRequest = MKLocalSearchRequest()
-        searchRequest.naturalLanguageQuery = searchBar.text
-        //print(searchBar.text)
-        
-        let activeSearch = MKLocalSearch(request: searchRequest)
-        activeSearch.start{(response, error) in
-            
-            activityIndicator.stopAnimating()
-            UIApplication.shared.endIgnoringInteractionEvents()
-            
-            if response == nil{
-                print("Error")
-            }
-            else{
-                let latitude_ = response?.boundingRegion.center.latitude
-                let longtitude_ = response?.boundingRegion.center.longitude
+            let activeSearch = MKLocalSearch(request: searchRequest)
+            activeSearch.start{(response, error) in
                 
-                let camera = GMSCameraPosition.camera(withLatitude: latitude_!, longitude: longtitude_!, zoom: 15.0)
-                self.mapView?.animate(to: camera)
-                self.getMarker()
-                //self.view = self.mapView
+                activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
+                
+                if response == nil{
+                    print("Error")
+                }
+                else{
+                    let latitude_ = response?.boundingRegion.center.latitude
+                    let longtitude_ = response?.boundingRegion.center.longitude
+                    
+                    let camera = GMSCameraPosition.camera(withLatitude: latitude_!, longitude: longtitude_!, zoom: 15.0)
+                    self.mapView?.animate(to: camera)
+                    self.getMarker()
+                    //self.view = self.mapView
+                }
             }
-            
-        }
+        
     }
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
@@ -85,7 +86,8 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        mapView?.delegate = self
+
         initGoogleMaps()
     }
 
@@ -93,7 +95,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        //mapView?.delegate = self
+//        mapView?.delegate = self
         
         locationManager.delegate = self
         
@@ -161,28 +163,41 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     func removCustomInfoWindow(){
         print("Start remove sibview")
         if let viewWithTag = self.view.viewWithTag(100) {
+            print("100")
             viewWithTag.removeFromSuperview()
         }else{
             print("No!")
         }
         if let viewWithTag2 = self.view.viewWithTag(101){
+            print("101")
+
             viewWithTag2.removeFromSuperview()
         }
-        if let viewWithTag3 = self.view.viewWithTag(102){
-            viewWithTag3.removeFromSuperview()
-        }
-        if let viewWithTag4 = self.view.viewWithTag(103){
-            viewWithTag4.removeFromSuperview()
-        }
-        if let viewWithTag5 = self.view.viewWithTag(104){
-            viewWithTag5.removeFromSuperview()
-        }
-        if let viewWithTag6 = self.view.viewWithTag(105){
-            viewWithTag6.removeFromSuperview()
-        }
-        if let viewWithTag7 = self.view.viewWithTag(106){
-            viewWithTag7.removeFromSuperview()
-        }
+//        if let viewWithTag3 = self.view.viewWithTag(102){
+//            print("102")
+//
+//            viewWithTag3.removeFromSuperview()
+//        }
+//        if let viewWithTag4 = self.view.viewWithTag(103){
+//            print("103")
+//
+//            viewWithTag4.removeFromSuperview()
+//        }
+//        if let viewWithTag5 = self.view.viewWithTag(104){
+//            print("104")
+//
+//            viewWithTag5.removeFromSuperview()
+//        }
+//        if let viewWithTag6 = self.view.viewWithTag(105){
+//            print("105")
+//
+//            viewWithTag6.removeFromSuperview()
+//        }
+//        if let viewWithTag7 = self.view.viewWithTag(106){
+//            print("106")
+//
+//            viewWithTag7.removeFromSuperview()
+//        }
         print("remove done")
     }
     
@@ -200,6 +215,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
         info_button.tag = 104
         info_detail.tag = 105
         info_comment.tag = 106
+        info_img.image = nil
         
         let park_id = marker.userData as! String
 
@@ -247,13 +263,17 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         print("tap")
         set_infowindow(marker: marker)
-        return false
+        return true
     }
     
-    func mapView( _mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) -> Bool{
+    func mapView( _mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D){
+
         print("coord")
-        return false
     }
+
+
+
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.

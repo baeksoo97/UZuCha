@@ -275,8 +275,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eR-h9-dLd" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lsX-ZX-RTN">
-                                        <rect key="frame" x="0.0" y="426" width="375" height="128"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsX-ZX-RTN">
+                                        <rect key="frame" x="0.0" y="440.5" width="375" height="113.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3u5-yM-J9r" userLabel="fee">
                                                 <rect key="frame" x="8" y="15" width="201" height="24"/>
@@ -327,6 +327,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="lsX-ZX-RTN" secondAttribute="bottom" id="5pK-DS-qiv"/>
                                     <constraint firstAttribute="trailing" secondItem="lsX-ZX-RTN" secondAttribute="trailing" id="ohu-iJ-cec"/>
                                     <constraint firstItem="lsX-ZX-RTN" firstAttribute="leading" secondItem="8eR-h9-dLd" secondAttribute="leading" id="xyT-TH-UY4"/>
                                 </constraints>
