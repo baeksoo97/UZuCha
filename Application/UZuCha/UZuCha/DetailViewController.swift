@@ -21,7 +21,7 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var commentView: UILabel!
     @IBOutlet weak var addressView: UILabel!
     @IBAction func messageButton(_ sender: Any) {
-        if MFMessageComposeViewController.canSendText(){
+        if MFMessageComposeViewController.canSendText() == true{
             if let phoneNum = selectedPark?.owner.phone_num{
                 print(phoneNum)
                 let recipients : [String] = [phoneNum]
@@ -31,8 +31,14 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
                 messageController.body = "hello"
                 self.present(messageController, animated: true, completion: nil)
             }
-            
         }
+        else{
+            print("not working")
+        }
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func callingButton(_ sender: Any) {
@@ -60,9 +66,7 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
         self.navigationItem.setRightBarButtonItems([afterRightFavoriteBarButtonItem], animated: true)
     }
     
-    public func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        controller.dismiss(animated: true, completion: nil)
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
