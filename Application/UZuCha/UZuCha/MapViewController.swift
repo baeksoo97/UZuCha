@@ -171,19 +171,20 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     
     func set_infowindow(marker:GMSMarker) {
 
-        infowindow = UIView(frame: CGRect.init(x: 0, y: 0, width: mapView.frame.size.width, height: 150))
+        infowindow = UIView(frame: CGRect.init(x: 0, y: 0, width: mapView.frame.size.width, height: 130))
         infowindow.tag = 100
         infowindow.backgroundColor = UIColor.white
         infowindow.frame.origin.y = mapView.frame.size.height - 149
         infowindow.layer.cornerRadius = 6
         info_id.tag = 101
-        info_img = UIImageView(frame: CGRect.init(x: infowindow.frame.size.width - 180, y: 20, width: 160, height: 110))
+        info_img = UIImageView(frame: CGRect.init(x: infowindow.frame.size.width - 170, y: 20, width: 160, height: 110))
         info_img.image = nil
         info_fee.frame.origin.y = (infowindow.frame.size.height - 10) / 5
         info_fee.frame.origin.x = 10
-        info_comment.frame.origin.y = (infowindow.frame.size.height - 10) / 2
         info_comment.frame.origin.x = 10
-        info_detail.frame.origin.y = (infowindow.frame.size.height - 10) / 4  * 3
+        info_comment.frame.origin.y = (infowindow.frame.size.height - 10) / 4  * 3
+        info_detail.frame.origin.y = (infowindow.frame.size.height - 10) / 2
+        
         info_detail.frame.origin.x = 10
 
 
@@ -207,6 +208,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
                 info_comment.text = park.owner_comment
                 info_fee.text = park.fee
                 info_detail.text = detailsString
+                
                 if (park.building.image_dir.count > 0) {
                     let url = URL(string: park.building.image_dir[0])
                     let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
