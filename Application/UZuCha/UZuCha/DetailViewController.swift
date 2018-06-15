@@ -7,32 +7,61 @@
 //
 
 import UIKit
+import MessageUI
 
-class DetailViewController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
-    
-    @IBOutlet weak var imageCollection: UICollectionView!
+class DetailViewController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMessageComposeViewControllerDelegate{
     var selectedPark : Park?
-   // var imageArray = [UIImage(named : "img_building1"),UIImage(named : "img_building2"),UIImage(named : "img_building3")]
     var imageArray : [URL] = []
     
-    
+    @IBOutlet weak var imageCollection: UICollectionView!
     @IBOutlet weak var feeView: UILabel!
     @IBOutlet weak var detailsCapacityView: UILabel!
     @IBOutlet weak var detailsAvailableTimeView: UILabel!
     @IBOutlet weak var detailsFloorView: UILabel!
     @IBOutlet weak var commentView: UILabel!
     @IBOutlet weak var addressView: UILabel!
-   
+    @IBAction func messageButton(_ sender: Any) {
+        if MFMessageComposeViewController.canSendText(){
+            if let phoneNum = selectedPark?.owner.phone_num{
+                print(phoneNum)
+                let recipients : [String] = [phoneNum]
+                let messageController = MFMessageComposeViewController()
+                messageController.messageComposeDelegate = self
+                messageController.recipients = recipients
+                messageController.body = "hello"
+                self.present(messageController, animated: true, completion: nil)
+            }
+            
+        }
+    }
+    
     @IBAction func callingButton(_ sender: Any) {
         if let phoneNum = selectedPark?.owner.phone_num{
-            let num = createPhoneNum(phoneNum: phoneNum)
-            if let phoneCallURL = URL(string: "tel://\(num)") {
+            if let phoneCallURL = URL(string: "tel://\(phoneNum)") {
                 let application:UIApplication = UIApplication.shared
                 if (application.canOpenURL(phoneCallURL)) {
                     application.open(phoneCallURL, options: [:], completionHandler: nil)
                 }
             }
         }
+    }
+    
+    @objc func switchColor(){
+        var afterRightFavoriteBarButtonItem : UIBarButtonItem
+        if(selectedPark?.is_favorite == true){
+            afterRightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_heart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
+            selectedPark?.is_favorite = false
+        }
+        else{
+            afterRightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_redheart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
+            selectedPark?.is_favorite = true
+            print("change true")
+        }
+        self.navigationItem.setRightBarButtonItems([afterRightFavoriteBarButtonItem], animated: true)
+    }
+    
+    public func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -64,27 +93,16 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
         commentView.text = selectedPark?.owner_comment
         commentView.font = UIFont.boldSystemFont(ofSize: 14.0)
         addressView.text = selectedPark?.building.address
-            
+        //detailView.text = selectedPark?.owner_comment
         imageCollection.dataSource = self
         imageCollection.delegate = self
-//        parkImageView.image = UIImage(named: (selectedPark?.building.image_dir[0])!)
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        if let phoneNum = selectedPark?.owner.phone_num{
+            print(phoneNum)
+        }
     }
     
-    @objc func switchColor(){
-        var afterRightFavoriteBarButtonItem : UIBarButtonItem
-        if(selectedPark?.is_favorite == true){
-            afterRightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_heart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
-            selectedPark?.is_favorite = false
-        }
-        else{
-            afterRightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_redheart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
-            selectedPark?.is_favorite = true
-            print("change true")
-        }
-        self.navigationItem.setRightBarButtonItems([afterRightFavoriteBarButtonItem], animated: true)
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

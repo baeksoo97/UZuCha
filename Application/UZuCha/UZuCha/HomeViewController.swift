@@ -13,17 +13,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var CurrentParkCollectionView: UICollectionView!
     @IBOutlet weak var titleView: UILabel!
-    
-    @IBOutlet weak var submitView: UIView!
+    @IBAction func submitView(_ sender: Any) {
+        guard let url = URL(string: "http://52.78.114.28:8091/admin/parkings/write") else {
+            return //be safe
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         titleView.font = UIFont.boldSystemFont(ofSize: 28.0)
-        
-        submitView.isOpaque = false
-       // submitView.backgroundColor = UIColor(white: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
         CurrentParkCollectionView.dataSource = self
         CurrentParkCollectionView.delegate = self
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,13 +66,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         cell.CurrentParkFee.text = currentPark.fee
         cell.CurrentParkFee.font = UIFont.boldSystemFont(ofSize: 13.0)
-        
         cell.CurrentParkAddress.text = currentPark.building.address
         
         return cell
     }
 
-    
+
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        // Get the new view controller using segue.destinationViewController.
 //        // Pass the selected object to the new view controller.
