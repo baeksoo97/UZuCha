@@ -25,6 +25,13 @@ section, summary, time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;}
 
+#header, #banner, #explain-people{
+	height: 100vh;
+	background-color:rgb(54, 193, 187)
+}
+
+#first,
+	
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
@@ -83,8 +90,8 @@ input, select, textarea {
 	}
 
 	body {
-		background-color: #183026;
-		background-image: url("images/overlay.png"), url("../../images/bg.jpg");
+		/*background-color: #183026;
+		background-image: url("images/overlay.png"), url("../../images/bg.jpg");*/
 		background-repeat: repeat, no-repeat;
 		background-size: auto, cover;
 		background-position: top left, center 0;
@@ -1898,7 +1905,7 @@ input, select, textarea {
 
 			.box.style2 header {
 				display: inline-block;
-				background: #fff;
+				/*background: #fff;*/
 				padding: 2em 3em 2em 3em;
 				margin: 0;
 			}
@@ -2075,7 +2082,6 @@ input, select, textarea {
 		color: #fff;
 		text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
 		text-align: center;
-		background: #35b88f url("images/banner.svg") bottom center no-repeat;
 		padding: 5em 0 5em 0;
 		margin: 0;
 		background-size: 125% auto;
@@ -2337,8 +2343,8 @@ input, select, textarea {
 		/* Basic */
 
 			body {
-				background-color: #203936;
-				background-image: url("images/overlay.png"), url("../../images/bg-alt.jpg");
+				/*background-color: #203936; */
+				/* background-image: url("images/overlay.png"), url("../../images/bg-alt.jpg"); */
 				background-repeat: repeat, no-repeat;
 				background-size: auto, 100% auto;
 				background-position: top left, top center;
