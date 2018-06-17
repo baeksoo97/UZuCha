@@ -13,6 +13,7 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     var selectedPark : Park?
     var imageArray : [URL] = []
     
+    @IBOutlet weak var detailView: UILabel!
     @IBOutlet weak var imageCollection: UICollectionView!
     @IBOutlet weak var feeView: UILabel!
     @IBOutlet weak var detailsCapacityView: UILabel!
@@ -97,7 +98,7 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
         commentView.text = selectedPark?.owner_comment
         commentView.font = UIFont.boldSystemFont(ofSize: 14.0)
         addressView.text = selectedPark?.building.address
-        //detailView.text = selectedPark?.owner_comment
+        detailView.text = selectedPark?.owner_comment
         imageCollection.dataSource = self
         imageCollection.delegate = self
         if let phoneNum = selectedPark?.owner.phone_num{
