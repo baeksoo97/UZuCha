@@ -545,7 +545,7 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="detail_map" translatesAutoresizingMaskIntoConstraints="NO" id="0hh-Yi-a2W">
+                                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="detail_map" translatesAutoresizingMaskIntoConstraints="NO" id="0hh-Yi-a2W" customClass="GMSMapView">
                                                 <rect key="frame" x="16" y="428" width="342" height="216"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.99763482810000004" green="0.93876542549999997" blue="0.42274901110000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -573,12 +573,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jvg-sm-ebb"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="C2X-Yc-hGT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <toolbarItems/>
                     <connections>
                         <outlet property="addressView" destination="1JK-wY-3QA" id="RgZ-bt-8Uj"/>
                         <outlet property="commentView" destination="4Ll-LA-b3e" id="66f-HY-69i"/>
+                        <outlet property="detail_mapView" destination="0hh-Yi-a2W" id="Lna-gC-yiV"/>
                         <outlet property="detailsAvailableTimeView" destination="9uf-NH-xCA" id="Qdj-rE-uv6"/>
                         <outlet property="detailsCapacityView" destination="GBV-NP-Y4Q" id="ZlW-ye-7C7"/>
                         <outlet property="detailsFloorView" destination="ITK-LB-8s6" id="kEp-fx-f1U"/>
@@ -597,7 +598,7 @@
         <image name="details_floor" width="33" height="32"/>
         <image name="details_message-1" width="21" height="22"/>
         <image name="details_telephone-1" width="22" height="22"/>
-        <image name="home_logo" width="50" height="45"/>
+        <image name="home_logo" width="312" height="270"/>
         <image name="icon_home" width="29" height="29"/>
         <image name="icon_like" width="29" height="30"/>
         <image name="icon_map" width="30" height="30"/>

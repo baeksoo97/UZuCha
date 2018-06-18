@@ -93,7 +93,6 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
 //        mapView?.delegate = self
         
         locationManager.delegate = self
-        
         getMarker()
 
     }

@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import GoogleMaps
 import MessageUI
 
-class DetailViewController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMessageComposeViewControllerDelegate{
+class DetailViewController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMessageComposeViewControllerDelegate,GMSMapViewDelegate {
     var selectedPark : Park?
     var imageArray : [URL] = []
     
@@ -18,6 +19,7 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var detailsCapacityView: UILabel!
     @IBOutlet weak var detailsAvailableTimeView: UILabel!
     @IBOutlet weak var detailsFloorView: UILabel!
+    @IBOutlet weak var detail_mapView: GMSMapView!
     @IBOutlet weak var commentView: UILabel!
     @IBOutlet weak var addressView: UILabel!
     @IBAction func messageButton(_ sender: Any) {
@@ -67,6 +69,7 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         //var image : [String] = selectedPark?.building.image_dir
+        
         var rightFavoriteBarButtonItem : UIBarButtonItem
         if(selectedPark?.is_favorite == true){
              rightFavoriteBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_redheart"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchColor))
@@ -99,6 +102,11 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
         if let phoneNum = selectedPark?.owner.phone_num{
             print(phoneNum)
         }
+        
+        
+        //test
+
+        initmap()
     }
     
     override func didReceiveMemoryWarning() {
@@ -125,6 +133,25 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
             cell.parkImage.image = UIImage(data: data)
         }
         return cell
+    }
+    func initmap(){
+        self.detail_mapView?.delegate = self
+        let latitude = selectedPark?.Map_location.latitude
+        let longtitude = selectedPark?.Map_location.longitude
+        print(latitude!)
+        print(longtitude!)
+        
+
+//        let camera = GMSCameraPosition.camera(withLatitude: latitude!, longitude: longtitude!, zoom: 12)
+        let camera = GMSCameraPosition.camera(withLatitude: longtitude!,
+                                              longitude: latitude!,
+                                              zoom: 16)
+        detail_mapView?.camera = camera
+
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: longtitude!, longitude: latitude!)
+
+        marker.map = detail_mapView
     }
 
 }
