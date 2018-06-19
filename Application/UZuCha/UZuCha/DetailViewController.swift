@@ -66,6 +66,7 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
             selectedPark?.is_favorite = true
             print("change true")
         }
+        JSONParking.toggleFavoriteRequest(id:(selectedPark?.id)!)
         self.navigationItem.setRightBarButtonItems([afterRightFavoriteBarButtonItem], animated: true)
     }
     

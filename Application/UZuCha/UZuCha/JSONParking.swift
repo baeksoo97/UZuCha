@@ -166,6 +166,27 @@ struct JSONParking {
         
         task.resume()
     }
+    
+    
+    static func toggleFavoriteRequest(id: String) {
+        
+        let apiURL = "api/parkings/toggleFavorite/"
+        let inputUrl = basePath + apiURL + id
+        
+        guard let url = URL(string: inputUrl) else {
+            print("ERROR: CANNOT CREATE URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        
+        let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
+            
+        }
+        
+        task.resume()
+    }
  
  
 }
