@@ -137,7 +137,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     func setupMarker(){
         print("setupMarker")
 
-        let markerImage = UIImage(named: "marker_icon2")!.withRenderingMode(.alwaysTemplate)
+        let markerImage = UIImage(named: "marker_icon3")!.withRenderingMode(.alwaysTemplate)
         let markerView = UIImageView(image: markerImage)
         markerView.tintColor = UIColor.red
         
@@ -150,7 +150,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
             parking_lot?.snippet = parks[i].building.address
             parking_lot?.userData = parks[i].id
 //            print(parking_lot?.userData)
-            parking_lot?.icon = self.imageWithImage(image: UIImage(named: "marker_icon2")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
+            parking_lot?.icon = self.imageWithImage(image: UIImage(named: "marker_icon3")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
 
             
 
@@ -190,15 +190,15 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
         infowindow.frame.origin.y = mapView.frame.size.height - 129
         infowindow.layer.cornerRadius = 6
         info_id.tag = 101
-        info_img = UIImageView(frame: CGRect.init(x: infowindow.frame.size.width - 170, y: 20, width: 160, height: 110))
+        info_img = UIImageView(frame: CGRect.init(x: infowindow.frame.size.width - 165, y: 10, width: 160, height: 110))
         info_img.image = nil
         info_fee.frame.origin.y = (infowindow.frame.size.height - 10) / 5
-        info_fee.frame.origin.x = 10
-        info_comment.frame.origin.x = 10
+        info_fee.frame.origin.x = 8
+        info_comment.frame.origin.x = 8
         info_comment.frame.origin.y = (infowindow.frame.size.height - 10) / 4  * 3
         info_detail.frame.origin.y = (infowindow.frame.size.height - 10) / 2
         
-        info_detail.frame.origin.x = 10
+        info_detail.frame.origin.x = 8
 
 
         let park_id = marker.userData as! String
@@ -231,8 +231,8 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
             }
         }
         
-        info_fee.font = UIFont.boldSystemFont(ofSize: 18.0)
-
+        info_fee.font = UIFont.boldSystemFont(ofSize: 17.0)
+        info_img.layer.cornerRadius = info_img.frame.width/30
 
         infowindow.addSubview(info_fee)
         infowindow.addSubview(info_detail)
