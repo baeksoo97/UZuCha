@@ -7,6 +7,36 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+.src-image {
+	display: none;
+  }
+  
+  .card {
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	color: rgb(255, 255, 255);
+  }
+  
+  .card .header-bg {
+	/* This stretches the canvas across the entire hero unit */
+	width: 100%;
+	height: 70px;
+	border-bottom: 1px #FFF solid;
+	/* This positions the canvas under the text */
+  }
+  .card .avatar {
+	position: relative;
+	z-index: 100;
+  }
+  
+  .card .avatar img {
+	width: 200px;
+	height: 200px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+  }
+  
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -25,6 +55,17 @@ section, summary, time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;}
 
+#header, #banner, #explain-people{
+	height: 100vh;
+	background-color:rgb(54, 193, 187);
+}
+
+#first_intro, #second_intro {
+	background-color:rgb(54, 193, 187);
+}
+
+#first,
+	
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
@@ -83,8 +124,8 @@ input, select, textarea {
 	}
 
 	body {
-		background-color: #183026;
-		background-image: url("images/overlay.png"), url("../../images/bg.jpg");
+		background-color:rgb(54, 193, 187);
+		/*background-image: url("images/overlay.png"), url("../../images/bg.jpg");*/
 		background-repeat: repeat, no-repeat;
 		background-size: auto, cover;
 		background-position: top left, center 0;
@@ -1822,7 +1863,7 @@ input, select, textarea {
 			height: 9em;
 			border-left: solid 1px #fff;
 		}
-
+/*
 		.box:before {
 			content: '';
 			display: block;
@@ -1835,13 +1876,13 @@ input, select, textarea {
 			margin-top: -33px;
 			background: url("images/arrow.svg") no-repeat;
 		}
-
+*/
 		.box :last-child {
 			margin-bottom: 0;
 		}
 
 		.box.style1 {
-			background: #fff;
+			background-color:rgb(54, 193, 187);
 			padding: 3em;
 		}
 
@@ -1898,7 +1939,7 @@ input, select, textarea {
 
 			.box.style2 header {
 				display: inline-block;
-				background: #fff;
+				/*background: #fff;*/
 				padding: 2em 3em 2em 3em;
 				margin: 0;
 			}
@@ -1945,6 +1986,53 @@ input, select, textarea {
 		.box.style3 {
 			background: #fff;
 			padding: 3em;
+		}
+
+		.box.style3 .image {
+			display: block;
+			position: absolute;
+			top: 0;
+			width: 50%;
+			height: 100%;
+			background: #152E33;
+			overflow: hidden;
+		}
+
+			.box.style3 .image img {
+				position: absolute;
+				top: 0;
+				height: 100%;
+				width: auto;
+			}
+
+		.box.style3 .inner > :last-child {
+			margin: 0;
+		}
+
+		.box.style3.right .image {
+			left: 0;
+		}
+
+			.box.style3.right .image img {
+				right: 0;
+			}
+
+		.box.style3.right .inner {
+			margin-left: 50%;
+			padding-left: 3em;
+		}
+
+		.box.style3.left .image {
+			right: 0;
+		}
+
+			.box.style3.left .image img {
+				left: 0;
+			}
+
+		.box.style3.left .inner {
+			margin-right: 50%;
+			padding-right: 3em;
 		}
 
 			.box.style3 header {
@@ -2075,12 +2163,15 @@ input, select, textarea {
 		color: #fff;
 		text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
 		text-align: center;
-		background: #35b88f url("images/banner.svg") bottom center no-repeat;
 		padding: 5em 0 5em 0;
 		margin: 0;
 		background-size: 125% auto;
 	}
 
+		#banner .container{
+			display: flex;
+  			justify-content: center;
+		}
 		#banner .button {
 			color: #35b882;
 			text-shadow: 0 0 0.5px rgba(53, 184, 130, 0.25);
@@ -2113,7 +2204,133 @@ input, select, textarea {
 				border-bottom-color: rgba(255, 255, 255, 0);
 			}
 
+/* C2C SCREEN */
+	#c2c {
+		position: relative;
+		color: #fff;
+		text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
+		text-align: center;
+		padding: 14em 0 14em 0;
+		margin: 0;
+		background-size: 125% auto;
+	}
+
+	#c2c header {
+		display: inline-block;
+		padding: 0 0 4.5em 0;
+	}
+
+		#c2c header h1 {
+			font-weight: 600;
+			font-size: 2em;
+			letter-spacing: 10px;
+		}
+
+		
+
+		#c2c header p {
+			border-top: solid 1px rgba(255, 255, 255, 0.5);
+			color: rgba(255, 255, 255, 0.75);
+			text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.1875);
+			font-size: 1em;
+			text-transform: uppercase;
+			letter-spacing: 3px;
+			padding: 0;
+			margin-top: 0.35em;
+		}
+
+		#c2c .container{
+			display: flex;
+  			justify-content: center;
+		}
+		#c2c .button {
+			color: #35b882;
+			text-shadow: 0 0 0.5px rgba(53, 184, 130, 0.25);
+		}
+
+		#c2c header {
+			margin: 0 0 2em 0;
+		}
+
+			#c2c header h2 {
+				font-weight: 400;
+				font-size: 1.75em;
+				letter-spacing: 8px;
+			}
+
+		#c2c p {
+			margin: 0;
+		}
+
+		#c2c footer {
+			margin: 2em 0 0 0;
+		}
+
+		#c2c a {
+			color: inherit;
+			border-bottom-color: rgba(255, 255, 255, 0.5);
+		}
+
+			#c2c a:hover {
+				border-bottom-color: rgba(255, 255, 255, 0);
+			}
+
+		
+			#c2c footer {
+				-moz-transition: opacity 2s ease-in-out, -moz-transform 1s ease-in-out;
+				-webkit-transition: opacity 2s ease-in-out, -webkit-transform 1s ease-in-out;
+				-ms-transition: opacity 2s ease-in-out, -ms-transform 1s ease-in-out;
+				transition: opacity 2s ease-in-out, transform 1s ease-in-out;
+				-moz-transition-delay: 1.25s;
+				-webkit-transition-delay: 1.25s;
+				-ms-transition-delay: 1.25s;
+				transition-delay: 1.25s;
+				position: absolute;
+				bottom: 9em;
+				margin: 0;
+				width: 100%;
+			}
+	
+				#c2c footer:after {
+					content: '';
+					display: block;
+					position: absolute;
+					bottom: -9em;
+					left: 50%;
+					height: 9em;
+					border-left: solid 1px #fff;
+				}
+	
+				#c2c footer:before {
+					content: '';
+					display: block;
+					width: 90px;
+					height: 66px;
+					position: absolute;
+					left: 50%;
+					bottom: -4.5em;
+					margin-left: -45px;
+					margin-bottom: -33px;
+					background: url("images/arrow.svg") no-repeat;
+				}
+			
 /* Footer */
+
+	#first_intro p {
+		color: #fff;
+	}
+
+	#first_intro h2 {
+		color: #fff;
+	}
+	
+	#second_intro h2 {
+		color: #fff;
+	}
+
+	#second_intro p {
+		color: #fff;
+	}
 
 	#footer {
 		position: relative;
@@ -2337,8 +2554,8 @@ input, select, textarea {
 		/* Basic */
 
 			body {
-				background-color: #203936;
-				background-image: url("images/overlay.png"), url("../../images/bg-alt.jpg");
+				/*background-color: #203936; */
+				/* background-image: url("images/overlay.png"), url("../../images/bg-alt.jpg"); */
 				background-repeat: repeat, no-repeat;
 				background-size: auto, 100% auto;
 				background-position: top left, top center;
