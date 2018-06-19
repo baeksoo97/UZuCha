@@ -183,6 +183,8 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     
     
     func set_infowindow(marker:GMSMarker) {
+        
+        removCustomInfoWindow()
 
         infowindow = UIView(frame: CGRect.init(x: 0, y: 0, width: mapView.frame.size.width, height: 130))
         infowindow.tag = 100
