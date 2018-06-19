@@ -13,6 +13,7 @@ import GoogleMaps
 
 class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate,GMSMapViewDelegate,UIGestureRecognizerDelegate{
     var locationManager = CLLocationManager()
+    var currentLocation: CLLocation?
     
     var parks:[Park] = []
     var selected_marker_id: String = String()
@@ -47,7 +48,6 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
         //지금 현재 MapKit을 이용하고 있는데 이거를 구글 지오코딩으로 해서 바꾸면 조금더 정확한 값을 얻을수있을듯
         let searchRequest = MKLocalSearchRequest()
         searchRequest.naturalLanguageQuery = searchBar.text
-        //print(searchBar.text)
     
         let activeSearch = MKLocalSearch(request: searchRequest)
         activeSearch.start{(response, error) in
@@ -65,7 +65,6 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
                 let camera = GMSCameraPosition.camera(withLatitude: latitude_!, longitude: longtitude_!, zoom: 15.0)
                 self.mapView?.animate(to: camera)
                 self.getMarker()
-                //self.view = self.mapView
             }
         }
         
@@ -81,29 +80,44 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        mapView?.delegate = self
 
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
         initGoogleMaps()
     }
-
+    override func didReceiveMemoryWarning()
+    {
+        super.didReceiveMemoryWarning()
+    }
+    
     @IBOutlet var info_button: UIButton!
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-//        mapView?.delegate = self
         
         locationManager.delegate = self
         getMarker()
 
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        if locations.count > 0
+        {
+            self.mapView?.camera = GMSCameraPosition.camera(withTarget: (locations.last?.coordinate)!, zoom: 10.0)
+        }
+    }
+    
     func initGoogleMaps() {
         print("init")
         let camera = GMSCameraPosition.camera(withLatitude: 37.557266, longitude: 127.045314, zoom: 15)
-        
+
+
         self.mapView?.camera = camera
         self.mapView?.delegate = self
         self.mapView?.isMyLocationEnabled = true
+        self.mapView?.settings.myLocationButton = true
+        mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.view.addSubview(mapView)
 
     }
@@ -123,7 +137,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
     func setupMarker(){
         print("setupMarker")
 
-        let markerImage = UIImage(named: "marker_icon")!.withRenderingMode(.alwaysTemplate)
+        let markerImage = UIImage(named: "marker_icon2")!.withRenderingMode(.alwaysTemplate)
         let markerView = UIImageView(image: markerImage)
         markerView.tintColor = UIColor.red
         
@@ -136,7 +150,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
             parking_lot?.snippet = parks[i].building.address
             parking_lot?.userData = parks[i].id
 //            print(parking_lot?.userData)
-            parking_lot?.icon = self.imageWithImage(image: UIImage(named: "marker_icon")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
+            parking_lot?.icon = self.imageWithImage(image: UIImage(named: "marker_icon2")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
 
             
 
@@ -173,7 +187,7 @@ class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManage
         infowindow = UIView(frame: CGRect.init(x: 0, y: 0, width: mapView.frame.size.width, height: 130))
         infowindow.tag = 100
         infowindow.backgroundColor = UIColor.white
-        infowindow.frame.origin.y = mapView.frame.size.height - 149
+        infowindow.frame.origin.y = mapView.frame.size.height - 129
         infowindow.layer.cornerRadius = 6
         info_id.tag = 101
         info_img = UIImageView(frame: CGRect.init(x: infowindow.frame.size.width - 170, y: 20, width: 160, height: 110))

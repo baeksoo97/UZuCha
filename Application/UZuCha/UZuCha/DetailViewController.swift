@@ -20,7 +20,7 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var detailsCapacityView: UILabel!
     @IBOutlet weak var detailsAvailableTimeView: UILabel!
     @IBOutlet weak var detailsFloorView: UILabel!
-    @IBOutlet weak var detail_mapView: GMSMapView!
+    @IBOutlet var detail_mapView: GMSMapView!
     @IBOutlet weak var commentView: UILabel!
     @IBOutlet weak var addressView: UILabel!
     @IBAction func messageButton(_ sender: Any) {
@@ -140,19 +140,16 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
         return cell
     }
     func initmap(){
-        self.detail_mapView?.delegate = self
         let latitude = selectedPark?.Map_location.latitude
         let longtitude = selectedPark?.Map_location.longitude
         print(latitude!)
         print(longtitude!)
         
 
-//        let camera = GMSCameraPosition.camera(withLatitude: latitude!, longitude: longtitude!, zoom: 12)
         let camera = GMSCameraPosition.camera(withLatitude: longtitude!,
                                               longitude: latitude!,
                                               zoom: 16)
         detail_mapView?.camera = camera
-
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: longtitude!, longitude: latitude!)
 

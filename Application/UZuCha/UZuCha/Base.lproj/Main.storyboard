@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nkM-k0-b6Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nkM-k0-b6Q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -62,7 +62,7 @@
                                 <rect key="frame" x="20" y="65" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="home_logo" translatesAutoresizingMaskIntoConstraints="NO" id="9xh-DV-7L9">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="home_logo" translatesAutoresizingMaskIntoConstraints="NO" id="9xh-DV-7L9">
                                         <rect key="frame" x="2" y="28" width="50" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
@@ -561,7 +561,7 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" restorationIdentifier="detail_map" translatesAutoresizingMaskIntoConstraints="NO" id="0hh-Yi-a2W">
+                                            <view contentMode="scaleToFill" restorationIdentifier="detail_map" translatesAutoresizingMaskIntoConstraints="NO" id="0hh-Yi-a2W" customClass="GMSMapView">
                                                 <rect key="frame" x="16" y="420" width="343" height="220"/>
                                                 <color key="backgroundColor" red="0.99763482810000004" green="0.98441320300000001" blue="0.75155625869999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -649,6 +649,7 @@
                         <outlet property="addressView" destination="1JK-wY-3QA" id="RgZ-bt-8Uj"/>
                         <outlet property="commentView" destination="4Ll-LA-b3e" id="66f-HY-69i"/>
                         <outlet property="detailView" destination="30L-30-5Fh" id="zLZ-9z-d7N"/>
+                        <outlet property="detail_mapView" destination="0hh-Yi-a2W" id="p1l-an-13c"/>
                         <outlet property="detailsAvailableTimeView" destination="9uf-NH-xCA" id="Qdj-rE-uv6"/>
                         <outlet property="detailsCapacityView" destination="GBV-NP-Y4Q" id="ZlW-ye-7C7"/>
                         <outlet property="detailsFloorView" destination="ITK-LB-8s6" id="kEp-fx-f1U"/>

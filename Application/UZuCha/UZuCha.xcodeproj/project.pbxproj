@@ -51,6 +51,7 @@
 		48DE4A6020C13840001459FB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		48FE1DC520BFEE51001B4106 /* JSONParking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParking.swift; sourceTree = "<group>"; };
 		48FE1DC720BFF2E0001B4106 /* ParkImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		900EBC9F20D8E13F003C8894 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		906FD5F020BAEF4800E583C2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		90D989C320D3A9D900FDA3F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5F0053620A432FE00DE7B8D /* UZuCha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UZuCha.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +141,7 @@
 				C5F0054520A432FF00DE7B8D /* Info.plist */,
 				906FD5F020BAEF4800E583C2 /* MapViewController.swift */,
 				48DE4A6020C13840001459FB /* HomeViewController.swift */,
+				900EBC9F20D8E13F003C8894 /* Location.gpx */,
 			);
 			path = UZuCha;
 			sourceTree = "<group>";
