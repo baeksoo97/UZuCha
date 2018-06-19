@@ -36,6 +36,12 @@
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
   }
+
+  .card .content h1 {
+	font-size: 1.25em;
+	letter-spacing: 8px;
+
+  }
   
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -2159,6 +2165,7 @@ input, select, textarea {
 /* Banner */
 
 	#banner {
+		transition: opacity 2s ease-in-out;
 		position: relative;
 		color: #fff;
 		text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
