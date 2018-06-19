@@ -667,7 +667,7 @@
         <image name="details_floor" width="33" height="32"/>
         <image name="details_message-1" width="21" height="22"/>
         <image name="details_telephone-1" width="22" height="22"/>
-        <image name="home_logo" width="50" height="45"/>
+        <image name="home_logo" width="312" height="270"/>
         <image name="icon_home" width="29" height="29"/>
         <image name="icon_like" width="29" height="30"/>
         <image name="icon_map" width="30" height="30"/>
