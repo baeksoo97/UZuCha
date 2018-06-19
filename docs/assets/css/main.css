@@ -1988,6 +1988,53 @@ input, select, textarea {
 			padding: 3em;
 		}
 
+		.box.style3 .image {
+			display: block;
+			position: absolute;
+			top: 0;
+			width: 50%;
+			height: 100%;
+			background: #152E33;
+			overflow: hidden;
+		}
+
+			.box.style3 .image img {
+				position: absolute;
+				top: 0;
+				height: 100%;
+				width: auto;
+			}
+
+		.box.style3 .inner > :last-child {
+			margin: 0;
+		}
+
+		.box.style3.right .image {
+			left: 0;
+		}
+
+			.box.style3.right .image img {
+				right: 0;
+			}
+
+		.box.style3.right .inner {
+			margin-left: 50%;
+			padding-left: 3em;
+		}
+
+		.box.style3.left .image {
+			right: 0;
+		}
+
+			.box.style3.left .image img {
+				left: 0;
+			}
+
+		.box.style3.left .inner {
+			margin-right: 50%;
+			padding-right: 3em;
+		}
+
 			.box.style3 header {
 				text-align: center;
 			}
@@ -2157,6 +2204,53 @@ input, select, textarea {
 				border-bottom-color: rgba(255, 255, 255, 0);
 			}
 
+/* C2C SCREEN */
+	#c2c {
+		position: relative;
+		color: #fff;
+		text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
+		text-align: center;
+		padding: 5em 0 5em 0;
+		margin: 0;
+		background-size: 125% auto;
+	}
+
+		#c2c .container{
+			display: flex;
+  			justify-content: center;
+		}
+		#c2c .button {
+			color: #35b882;
+			text-shadow: 0 0 0.5px rgba(53, 184, 130, 0.25);
+		}
+
+		#c2c header {
+			margin: 0 0 2em 0;
+		}
+
+			#c2c header h2 {
+				font-weight: 400;
+				font-size: 1.75em;
+				letter-spacing: 8px;
+			}
+
+		#c2c p {
+			margin: 0;
+		}
+
+		#c2c footer {
+			margin: 2em 0 0 0;
+		}
+
+		#c2c a {
+			color: inherit;
+			border-bottom-color: rgba(255, 255, 255, 0.5);
+		}
+
+			#c2c a:hover {
+				border-bottom-color: rgba(255, 255, 255, 0);
+			}
+			
 /* Footer */
 
 	#first_intro p {
