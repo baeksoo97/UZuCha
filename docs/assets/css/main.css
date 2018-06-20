@@ -2086,8 +2086,12 @@ input, select, textarea {
 		text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
 		text-align: center;
 		margin: 0;
-		padding: 14em 0 14em 0;
+		padding: 7em 0 7em 0;
 		cursor: default;
+	}
+	#header img {
+		height: 150px;
+		width: 150px;
 	}
 
 		#header header {
@@ -2201,6 +2205,12 @@ input, select, textarea {
 				letter-spacing: 8px;
 			}
 
+			#banner header h3 {
+				font-weight: 400;
+				font-size: 1.75em;
+				letter-spacing: 8px;
+			}
+
 		#banner p {
 			margin: 0;
 		}
@@ -2224,7 +2234,7 @@ input, select, textarea {
 		color: #fff;
 		text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25);
 		text-align: center;
-		padding: 14em 0 14em 0;
+		padding: 7em 0 7em 0;
 		margin: 0;
 		background-size: 125% auto;
 	}
