@@ -1839,8 +1839,8 @@ input, select, textarea {
 		input[type="reset"].style3,
 		button.style3,
 		.button.style3 {
-			background: none;
-			color: #3a3939;
+			background: #fff;
+			color: #000000;
 			box-shadow: inset 0 0 0 1px #dad9d9;
 		}
 
@@ -1990,8 +1990,16 @@ input, select, textarea {
 				}
 
 		.box.style3 {
-			background: #fff;
+			background: rgb(54, 193, 187);
 			padding: 3em;
+		}
+
+		.container.box.style3 h2{
+			color: #fff;
+		}
+
+		.container.box.style3 p{
+			color: #fff;
 		}
 
 		.box.style3 .image {
@@ -2000,7 +2008,6 @@ input, select, textarea {
 			top: 0;
 			width: 50%;
 			height: 100%;
-			background: #152E33;
 			overflow: hidden;
 		}
 
