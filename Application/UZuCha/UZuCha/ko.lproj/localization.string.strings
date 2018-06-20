@@ -1,0 +1,124 @@
+/* 
+  localization.string.strings
+  UZuCha
+
+  Created by Woong Jin Yoo on 2018. 6. 20..
+  Copyright © 2018년 Woongjin Yoo. All rights reserved.
+*/
+
+/* Class = "UILabel"; text = "서울시 성동구 행당로 82 행당한진타운아파트"; ObjectID = "1JK-wY-3QA"; */
+"1JK-wY-3QA.text" = "82, Haengdang-ro, Seongdong-gu, Seoul, Republic of Korea";
+
+/* Class = "UIButton"; normalTitle = "전화상담"; ObjectID = "1Tx-dC-hRf"; */
+"1Tx-dC-hRf.normalTitle" = "Telephone consultation";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "30L-30-5Fh"; */
+"30L-30-5Fh.text" = "Label";
+
+/* Class = "UILabel"; text = "현재 나와있는 주차장"; ObjectID = "3jX-nL-D0N"; */
+"3jX-nL-D0N.text" = "Available now";
+
+/* Class = "UILabel"; text = "fee"; ObjectID = "3u5-yM-J9r"; */
+"3u5-yM-J9r.text" = "fee";
+
+/* Class = "UILabel"; text = "왕십리역 약 3분 기둥 없음 주차하기 편함 "; ObjectID = "4Ll-LA-b3e"; */
+"4Ll-LA-b3e.text" = "Wangsimni Station about 3 minutes// No pillar// easy to park";
+
+/* Class = "UITabBarItem"; title = "지도"; ObjectID = "544-JY-GGg"; */
+"544-JY-GGg.title" = "Maps";
+
+/* Class = "UILabel"; text = "빌딩"; ObjectID = "8fe-zH-QmG"; */
+"8fe-zH-QmG.text" = "Building";
+
+/* Class = "UILabel"; text = "9:00AM~10:00AM "; ObjectID = "9uf-NH-xCA"; */
+"9uf-NH-xCA.text" = "9:00AM~10:00AM ";
+
+/* Class = "UILabel"; text = "찾고 계신가요?"; ObjectID = "Axw-Ut-Ydz"; */
+"Axw-Ut-Ydz.text" = "Looking for?";
+
+/* Class = "UINavigationItem"; title = "관심 목록"; ObjectID = "BFB-Y4-Vvk"; */
+"BFB-Y4-Vvk.title" = "Favorite";
+
+/* Class = "UILabel"; text = "등록페이지 바로 가기"; ObjectID = "BNk-Ri-u2x"; */
+"BNk-Ri-u2x.text" = "Go to Add Parking Lots";
+
+/* Class = "UIButton"; normalTitle = "메세지"; ObjectID = "Cpu-t8-gW8"; */
+"Cpu-t8-gW8.normalTitle" = "Message";
+
+/* Class = "UIButton"; normalTitle = "010-1234-5678"; ObjectID = "EJC-po-w5d"; */
+"EJC-po-w5d.normalTitle" = "010-1234-5678";
+
+/* Class = "UILabel"; text = "qortndud97@naver.com"; ObjectID = "EQd-uq-uqZ"; */
+"EQd-uq-uqZ.text" = "qortndud97@naver.com";
+
+/* Class = "UILabel"; text = "4대"; ObjectID = "GBV-NP-Y4Q"; */
+"GBV-NP-Y4Q.text" = "4Cars";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "IDB-BU-9S0"; */
+"IDB-BU-9S0.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "/소 5000/중 5000/대 2000/"; ObjectID = "IFX-1U-vDw"; */
+"IFX-1U-vDw.text" = "/S 5000/M 5000/L 2000/";
+
+/* Class = "UILabel"; text = "1층 "; ObjectID = "ITK-LB-8s6"; */
+"ITK-LB-8s6.text" = "1floor ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ljb-qV-j2c"; */
+"Ljb-qV-j2c.text" = "Label";
+
+/* Class = "UILabel"; text = "4대 | 1층 | 9:00AM~10:00AM "; ObjectID = "N9O-NK-k4h"; */
+"N9O-NK-k4h.text" = "4Car | 1floor | 9:00AM~10:00AM ";
+
+/* Class = "UILabel"; text = "위치"; ObjectID = "Now-TL-cHP"; */
+"Now-TL-cHP.text" = "Location";
+
+/* Class = "UILabel"; text = "서울시 성동구 행당로 82 행당한진타운아파트"; ObjectID = "Qyb-2a-3Cq"; */
+"Qyb-2a-3Cq.text" = "82, Haengdang-ro, Seongdong-gu, Seoul, Republic of Korea";
+
+/* Class = "UITabBarItem"; title = "관심목록"; ObjectID = "TEE-BS-jjS"; */
+"TEE-BS-jjS.title" = "Favorite";
+
+/* Class = "UILabel"; text = "comment"; ObjectID = "XEE-99-Xi1"; */
+"XEE-99-Xi1.text" = "comment";
+
+/* Class = "UILabel"; text = "/소 5000/중 5000/대 2000/"; ObjectID = "Y7L-XA-Clb"; */
+"Y7L-XA-Clb.text" = "/S 5000/M 5000/L 2000/";
+
+/* Class = "UIViewController"; title = "주차장"; ObjectID = "Zn5-fU-z3b"; */
+"Zn5-fU-z3b.title" = "Parking Lot";
+
+/* Class = "UILabel"; text = "상세설명"; ObjectID = "bJV-Fc-JQc"; */
+"bJV-Fc-JQc.text" = "Details";
+
+/* Class = "UILabel"; text = "왕십리역 약 3분 기둥 없음 주차하기 편함 "; ObjectID = "bsM-2J-N1c"; */
+"bsM-2J-N1c.text" = "Wangsimni Station about 3 minutes// No pillar// easy to park";
+
+/* Class = "UILabel"; text = "등록하시겠어요?"; ObjectID = "cSG-GE-CAv"; */
+"cSG-GE-CAv.text" = "going to Add?";
+
+/* Class = "UILabel"; text = "어떤 동네, 어떤 주차장을"; ObjectID = "ci1-dG-ojJ"; */
+"ci1-dG-ojJ.text" = "Which Neighborhood, Which Parking Lot";
+
+/* Class = "UILabel"; text = "detail"; ObjectID = "eLG-Mz-nPB"; */
+"eLG-Mz-nPB.text" = "detail";
+
+/* Class = "UILabel"; text = "/소 5000/중 5000/대 2000/"; ObjectID = "fyF-ic-anR"; */
+"fyF-ic-anR.text" = "/S 5000/M 5000/L 2000/";
+
+/* Class = "UILabel"; text = "주임"; ObjectID = "gdk-a0-Dr8"; */
+"gdk-a0-Dr8.text" = "주임";
+
+/* Class = "UILabel"; text = "우리집에서 주차하고 갈래?"; ObjectID = "ngY-Bi-zK8"; */
+"ngY-Bi-zK8.text" = "UZuCha?";
+
+/* Class = "UITabBarItem"; title = "홈"; ObjectID = "rxD-FM-ews"; */
+"rxD-FM-ews.title" = "Home";
+
+/* Class = "UILabel"; text = "건물주"; ObjectID = "uLp-BP-yuw"; */
+"uLp-BP-yuw.text" = "Owner";
+
+/* Class = "UILabel"; text = "당신의 동네, 주차장을"; ObjectID = "w03-bn-exz"; */
+"w03-bn-exz.text" = "Your Neighborhood, Your Parking Lot";
+
+/* Class = "UILabel"; text = "한양대학교 왕십리 동래구 사직2동"; ObjectID = "yfa-Po-m8Q"; */
+"yfa-Po-m8Q.text" = "Hanyang University";
