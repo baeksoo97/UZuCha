@@ -175,6 +175,15 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
         }
         return cell
     }
+    
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
     func initmap(){
         let latitude = selectedPark?.Map_location.latitude
         let longtitude = selectedPark?.Map_location.longitude
@@ -188,7 +197,7 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
         detail_mapView?.camera = camera
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: longtitude!, longitude: latitude!)
-
+        marker.icon = self.imageWithImage(image: UIImage(named: "marker_icon3")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
         marker.map = detail_mapView
     }
 
