@@ -184,17 +184,20 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
         return newImage
     }
     
+
+    
     func initmap(){
         let latitude = selectedPark?.Map_location.latitude
         let longtitude = selectedPark?.Map_location.longitude
-        print(latitude!)
-        print(longtitude!)
-        
 
         let camera = GMSCameraPosition.camera(withLatitude: longtitude!,
                                               longitude: latitude!,
                                               zoom: 16)
         detail_mapView?.camera = camera
+        detail_mapView?.settings.tiltGestures = false
+        detail_mapView?.settings.tiltGestures = false
+        detail_mapView?.settings.rotateGestures = false
+        detail_mapView?.settings.scrollGestures = false
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: longtitude!, longitude: latitude!)
         marker.icon = self.imageWithImage(image: UIImage(named: "marker_icon3")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
