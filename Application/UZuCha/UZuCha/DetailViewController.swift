@@ -14,6 +14,12 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     var selectedPark : Park?
     var imageArray : [URL] = []
     
+    @IBOutlet weak var buildingNameView: UILabel!
+    @IBOutlet weak var ownerTitleView: UILabel!
+    @IBOutlet weak var detailTitleView: UILabel!
+    @IBOutlet weak var ownerEmailView: UILabel!
+    @IBOutlet weak var ownerPhoneView: UIButton!
+    @IBOutlet weak var ownerNameView: UILabel!
     @IBOutlet weak var detailView: UILabel!
     @IBOutlet weak var imageCollection: UICollectionView!
     @IBOutlet weak var feeView: UILabel!
@@ -23,6 +29,30 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet var detail_mapView: GMSMapView!
     @IBOutlet weak var commentView: UILabel!
     @IBOutlet weak var addressView: UILabel!
+    @IBOutlet weak var addressTitleView: UILabel!
+    
+    @IBAction func ownerPhoneButton(_ sender: Any) {
+        let phone = selectedPark?.owner.phone_num
+        let alertView = UIAlertController(title:selectedPark?.owner.name, message: selectedPark?.owner.phone_num, preferredStyle : .alert)
+        let cancel = UIAlertAction(title : "취소", style : .destructive)
+        let call = UIAlertAction(title : "통화", style : .default){(action) in
+            var urlString = "tel://"
+            if let num = phone{
+                urlString += num
+            }
+        
+            if let numberURL = URL(string : urlString){
+                UIApplication.shared.open(numberURL, options: [:], completionHandler: nil)
+                
+            }
+            
+        }
+        alertView.addAction(cancel)
+        alertView.addAction(call)
+        
+        present(alertView,animated: true, completion: nil)
+        
+    }
     @IBAction func messageButton(_ sender: Any) {
         if MFMessageComposeViewController.canSendText() == true{
             if let phoneNum = selectedPark?.owner.phone_num{
@@ -101,15 +131,20 @@ class DetailViewController : UIViewController, UICollectionViewDelegate, UIColle
         detailsAvailableTimeView.text = selectedPark?.details.available_time
         commentView.text = selectedPark?.owner_comment
         commentView.font = UIFont.boldSystemFont(ofSize: 14.0)
+        buildingNameView.text = selectedPark?.building.name
         addressView.text = selectedPark?.building.address
+        
+        //detailView.text = selectedPark?.detail_info
         detailView.text = selectedPark?.owner_comment
         imageCollection.dataSource = self
         imageCollection.delegate = self
-        if let phoneNum = selectedPark?.owner.phone_num{
-            print(phoneNum)
-        }
-        
-        
+        ownerNameView.text = selectedPark?.owner.name
+    ownerPhoneView.setTitle(selectedPark?.owner.phone_num, for: .normal)
+        ownerEmailView.text = selectedPark?.owner.mail_addr
+        ownerTitleView.font = UIFont.boldSystemFont(ofSize: 15.0)
+        ownerNameView.font = UIFont.boldSystemFont(ofSize: 15.0)
+        detailTitleView.font = UIFont.boldSystemFont(ofSize: 15.0)
+        addressTitleView.font = UIFont.boldSystemFont(ofSize: 15.0)
         //test
 
         initmap()
