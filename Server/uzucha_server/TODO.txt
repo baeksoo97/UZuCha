@@ -1,6 +1,0 @@
-구글 맵 마커로 input 받게 구현
-latitude, longitude
-
-CSS 다듬기
-
-DB 삭제, 수정시 포함된 파일 수정
