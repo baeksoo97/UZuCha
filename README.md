@@ -9,8 +9,8 @@
 어딜가나 부족한 주차공간에 문제를 겪는 서울시 내의 운전자들을 위한 솔루션입니다!
 여분의 주차공간을 보유하고 있는 개인 건물주와 주차 희망자를 연결하여, 서울시 내의 숨겨져있는 주차공간을 최대로 활용합니다!
 
-![sc2](.docs/images/sc2.png)
+![sc2](./docs/images/sc2.png)
 
-![sc3](.docs/images/sc3.png)
+![sc3](./docs/images/sc3.png)
 
-![sc4](.docs/images/sc4.png)
+![sc4](./docs/images/sc4.png)
