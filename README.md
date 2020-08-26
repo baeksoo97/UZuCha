@@ -1,4 +1,9 @@
-# UZuCha
+# UZuCha : Location-based Studio Parking Lot Search Platform
+
+An IOS mobile application for making the most use of parking space hidden in Seoul by connecting users with private landlords having parking space.
+
+Link : https://projectintheclass.github.io/UZuCha/
+
 
 위치 기반형 원룸 주차장 검색 서비스 for iOS
 
